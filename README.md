@@ -2,12 +2,13 @@
 A generative art application written in Java using the Processing library. Generates a vector grid of shapes.
 
 # Running the program
-You will need:
-* Processing 3: https://processing.org/
-* The required libraries (Uploaded to this repo in libraries.zip for convenience, the dropbox library needed a folder restructure to comply with Processing's library detection, and both are likely outdated by now.)
-* Please note, the dropbox API library is required but not used right now. Functions that reference it are left in the code as relics of the license validation system, which is disabled.
-* Follow this guide to install the libraries for Processing (https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library)
-* In Processing, under the Tools tab, make sure to install processing-java.
+After downloading the sourcecode, you will need to set up Processing to run ShapePlane.
+* Download Processing 3 here: https://processing.org/
+* The required libraries are uploaded to this repo in libraries.zip.
+  * I am unsure if the latest versions of these libraries are compatible, so I recommend using the ones here.
+  * Sidenote: the dropbox API library is required but not used right now. Functions that use it are still included only as a display of the license verification system that is disabled.
+* Follow this guide to install the libraries for Processing: https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library
+* In Processing you need to install processing-java, which can be found in the Tools tab.
   
 Once processing-java and the libraries are installed, you're ready to run ShapePlane!
 
@@ -16,6 +17,8 @@ Once processing-java and the libraries are installed, you're ready to run ShapeP
 * Right-arrow: Generate new image with random seed.
 * Down-arrow: Go back to the previous random seed and image.
 * Up-arrow: Save image PDF and preset.
+
+Saved images and presets can be found in the images and data folders respectively alongside the .pde file.
 
 # Example images
 
