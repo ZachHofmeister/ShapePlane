@@ -4,7 +4,8 @@ A generative art application written in Java using the Processing library. Gener
 # Running the program
 You will need:
 * Processing 3: https://processing.org/
-* The libraries folder (Uploaded to this repo for convenience, the dropbox library needed a folder restructure to comply with Processing's library detection, and both are likely outdated by now.)
+* The required libraries (Uploaded to this repo in libraries.zip for convenience, the dropbox library needed a folder restructure to comply with Processing's library detection, and both are likely outdated by now.)
+* Please note, the dropbox API library is required but not used right now. Functions that reference it are left in the code as relics of the license validation system, which is disabled.
 * Follow this guide to install the libraries for Processing (https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library)
 * In Processing, under the Tools tab, make sure to install processing-java.
   
