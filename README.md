@@ -3,13 +3,10 @@ A generative art application written in Java using the Processing library. Gener
 
 # Running the program
 After downloading the sourcecode, you will need to set up Processing to run ShapePlane.
-* Download Processing 3 here: https://processing.org/
-* The required libraries are uploaded to this repo in libraries.zip.
-  * I am unsure if the latest versions of these libraries are compatible, so I recommend using the ones here.
-  * Sidenote: the dropbox API library is required but not used right now. Functions that use it are still included only as a display of the license verification system that is disabled.
-* Follow this guide to install the libraries for Processing: https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library
-* In Processing you need to install processing-java, which can be found in the Tools tab.
-  
+* Download [Processing 3](https://processing.org/) 
+* In Processing you need to install processing-java which can be found in the Tools tab.
+* Install the controlP5 library from `Sketch > Import Library > Add Library` (last known working version 2.2.6)
+
 Once processing-java and the libraries are installed, you're ready to run ShapePlane!
 
 # Controls
@@ -18,7 +15,7 @@ Once processing-java and the libraries are installed, you're ready to run ShapeP
 * Down-arrow: Go back to the previous random seed and image.
 * Up-arrow: Save image PDF and preset.
 
-Saved images and presets can be found in the images and data folders respectively alongside the .pde file.
+Saved images and presets can be found in the `images` and `presets` folders inside `<USER HOME>/Documents/ShapePlane/`
 
 # Example images
 
