@@ -54,7 +54,7 @@ Textlabel previewTextlabel;
 void setup() {
 	//INITIALIZE
 	size(1000, 1000);
-	frameRate(5000);
+	frameRate(60);
 	
 	PImage icon = loadImage("data/icon_512x512.png");
 	PGraphics iconGraphics = createGraphics(512,512,JAVA2D);
@@ -80,7 +80,7 @@ void setup() {
 	   (new File(docsPath + "ShapePlane/images")).mkdir();
 	}
 	if (!(new File(docsPath + "ShapePlane/imageSaveCount.txt")).exists()) {
-	    saveStrings(docsPath + "ShapePlane/imageSaveCount.txt", new String[] {"0"});
+		saveStrings(docsPath + "ShapePlane/imageSaveCount.txt", new String[] {"0"});
 	}
 	
 	//GUI INITIALIZE
@@ -97,15 +97,15 @@ void setup() {
 	cp5.addGroup("allTabs").setLabel("");
 	
 	Button generateButton = cp5.addButton("drawPlane").setPosition(20,20).setSize(120,30).setCaptionLabel("Generate").setColorLabel(color(0, 0, 0)).setGroup("allTabs");
-	    seedBox = cp5.addTextfield("_seed").setPosition(140,20).setSize(120,30).setCaptionLabel("").setText("").setColorValue(color(0,0,0)).setColorActive(color(255,0,0)).setGroup("allTabs");
-	    boxes.add(seedBox);
+		seedBox = cp5.addTextfield("_seed").setPosition(140,20).setSize(120,30).setCaptionLabel("").setText("").setColorValue(color(0,0,0)).setColorActive(color(255,0,0)).setGroup("allTabs");
+		boxes.add(seedBox);
 	Button savePrefsButton = cp5.addButton("savePrefs").setPosition(280,20).setSize(120,30).setCaptionLabel("Save Preset").setColorLabel(color(0, 0, 0)).setGroup("allTabs");
-	    presetSaveNameBox = cp5.addTextfield("_presetSaveName").setPosition(400,20).setSize(120,30).setCaptionLabel("").setText("newPreset").setColorValue(color(0,0,0)).setColorActive(color(255,0,0)).setGroup("allTabs");
-	    boxes.add(presetSaveNameBox);
+		presetSaveNameBox = cp5.addTextfield("_presetSaveName").setPosition(400,20).setSize(120,30).setCaptionLabel("").setText("newPreset").setColorValue(color(0,0,0)).setColorActive(color(255,0,0)).setGroup("allTabs");
+		boxes.add(presetSaveNameBox);
 	Button loadPrefsButton = cp5.addButton("loadPrefs").setPosition(540,20).setSize(120,30).setCaptionLabel("Load Preset").setColorLabel(color(0, 0, 0)).setGroup("allTabs");
 	Button deletePrefsButton = cp5.addButton("delPrefs").setPosition(540,50).setSize(120,30).setCaptionLabel("DEL Preset").setColorLabel(color(0, 0, 0)).setGroup("allTabs");
-	    presetList = cp5.addListBox("preset").setPosition(670,20).setSize(200,60).setCaptionLabel("Presets").setValue(0).setBarHeight(30).setItemHeight(30).setType(0)
-	       .addItems(new String[] {"INITIAL"}).setColorLabel(color(0, 0, 0)).setColorValue(color(0, 0, 0)).setGroup("allTabs");
+		presetList = cp5.addListBox("preset").setPosition(670,20).setSize(200,60).setCaptionLabel("Presets").setValue(0).setBarHeight(30).setItemHeight(30).setType(0)
+		   .addItems(new String[] {"INITIAL"}).setColorLabel(color(0, 0, 0)).setColorValue(color(0, 0, 0)).setGroup("allTabs");
 	Button loadDefaultPrefsButton = cp5.addButton("loadDefault").setPosition(890,20).setSize(90,60).setCaptionLabel("Load\nDefault").setColorLabel(color(0, 0, 0)).setGroup("allTabs");
 	
 	sizeSlider = cp5.addSlider("size").setPosition(70,90).setSize(400,30).setCaptionLabel("Grid Height").setRange(1,150).setColorValue(color(0)).setColorLabel(color(255));
@@ -123,7 +123,7 @@ void setup() {
 	   .setColorLabel(color(0, 0, 0)).setColorValue(color(0, 0, 0));
 	
 	subToggle = cp5.addToggle("sub").setPosition(20,170).setSize(30,30).setCaptionLabel("");
-	    Textlabel toggleLabel = cp5.addTextlabel("Caption").setPosition(51,172).setText("SUBDIVIDE");
+		Textlabel toggleLabel = cp5.addTextlabel("Caption").setPosition(51,172).setText("SUBDIVIDE");
 	
 	subCountSlider = cp5.addSlider("subCount").setPosition(70,200).setSize(400,30).setCaptionLabel("Subdivision Count").setRange(1,10000).setColorValue(color(0)).setColorLabel(color(255));
 	subCountSlider.getValueLabel().setVisible(false);
@@ -139,10 +139,10 @@ void setup() {
 	   .addItems(new String[] {"Off", "Color", "Brightness Tint", "Saturation Tint"}).setColorLabel(color(0, 0, 0)).setColorValue(color(0, 0, 0));
 	
 	Button randomPerlinSeed = cp5.addButton("randomizePerlinSeed").setPosition(20,420).setSize(150,30).setCaptionLabel("Perlin Seed").setColorLabel(color(0, 0, 0));
-	    perlinSeedBox = cp5.addTextfield("perlinSeed").setPosition(170,420).setSize(150,30).setCaptionLabel("").setText(defaultPrefs[16]).setColorValue(color(0,0,0)).setColorActive(color(255,0,0));
-	    boxes.add(perlinSeedBox);
-	    perlinRandomizeToggle = cp5.addToggle("ranPerlin").setPosition(330,420).setSize(30,30).setCaptionLabel("");
-	        Textlabel toggleLabel2 = cp5.addTextlabel("Caption2").setPosition(361,422).setText("RANDOM ON GENERATE");
+		perlinSeedBox = cp5.addTextfield("perlinSeed").setPosition(170,420).setSize(150,30).setCaptionLabel("").setText(defaultPrefs[16]).setColorValue(color(0,0,0)).setColorActive(color(255,0,0));
+		boxes.add(perlinSeedBox);
+		perlinRandomizeToggle = cp5.addToggle("ranPerlin").setPosition(330,420).setSize(30,30).setCaptionLabel("");
+			Textlabel toggleLabel2 = cp5.addTextlabel("Caption2").setPosition(361,422).setText("RANDOM ON GENERATE");
 	
 	perlinScaleSlider = cp5.addSlider("pperlinScale").setPosition(90,450).setSize(230,30).setCaptionLabel("Perlin Scale").setRange( - 0.001,.2).setColorValue(color(0)).setColorLabel(color(255));
 	perlinScaleSlider.getValueLabel().setVisible(false);
@@ -241,96 +241,96 @@ void setup() {
 
 void draw() {
 	if (guiState) {
-	    boxesVis.clear();
+		boxesVis.clear();
 		for (Textfield t : boxes) {
 			if (t.isVisible() && t.getTab().isActive()) {
 				boxesVis.add(t);
 			}
 		}
 		
-	    updateColorPickers();
+		updateColorPickers();
 		
-	    subList.setSize(300, 30 + 30 * subList.getItems().size());
-	    if (shape != lpShape) {
-	        refreshSubs();
-	        image(raster, 0, 0);
-	        toggleGUI(true);
-	    }
-	    subs.clear();
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subs.add((boolean)subList.getItem(i).get("state"));
-	    }
+		subList.setSize(300, 30 + 30 * subList.getItems().size());
+		if (shape != lpShape) {
+			refreshSubs();
+			image(raster, 0, 0);
+			toggleGUI(true);
+		}
+		subs.clear();
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subs.add((boolean)subList.getItem(i).get("state"));
+		}
 		
-	    loneBoxManage(seedBox);
-	    loneBoxManage(presetSaveNameBox);
-	    size = (int)boxSliderBalance(size, sizeBox, sizeSlider, 0);
-	    colorCount = (int)boxSliderBalance(colorCount, colorCountBox, colorCountSlider, 0);
-	    startHue = (int)boxSliderBalance(startHue, startHueBox, startHueSlider, 0);
-	    startSat = (int)boxSliderBalance(startSat, startSatBox, startSatSlider, 0);
-	    startBri = (int)boxSliderBalance(startBri, startBriBox, startBriSlider, 0);
-	    hueSpacing = (int)boxSliderBalance(hueSpacing, hueSpacingBox, hueSpacingSlider, 0);
-	    satSpacing = (int)boxSliderBalance(satSpacing, satSpacingBox, satSpacingSlider, 0);
-	    briSpacing = (int)boxSliderBalance(briSpacing, briSpacingBox, briSpacingSlider, 0);
-	    strokeWidth = boxSliderBalance(strokeWidth, strokeWidthBox, strokeWidthSlider, 2);
-	    strokeHue = (int)boxSliderBalance(strokeHue, strokeHueBox, strokeHueSlider, 0);
-	    strokeSat = (int)boxSliderBalance(strokeSat, strokeSatBox, strokeSatSlider, 0);
-	    strokeBri = (int)boxSliderBalance(strokeBri, strokeBriBox, strokeBriSlider, 0);
-	    subCount = (int)boxSliderBalance(subCount, subCountBox, subCountSlider, 0);
+		loneBoxManage(seedBox);
+		loneBoxManage(presetSaveNameBox);
+		size = (int)boxSliderBalance(size, sizeBox, sizeSlider, 0);
+		colorCount = (int)boxSliderBalance(colorCount, colorCountBox, colorCountSlider, 0);
+		startHue = (int)boxSliderBalance(startHue, startHueBox, startHueSlider, 0);
+		startSat = (int)boxSliderBalance(startSat, startSatBox, startSatSlider, 0);
+		startBri = (int)boxSliderBalance(startBri, startBriBox, startBriSlider, 0);
+		hueSpacing = (int)boxSliderBalance(hueSpacing, hueSpacingBox, hueSpacingSlider, 0);
+		satSpacing = (int)boxSliderBalance(satSpacing, satSpacingBox, satSpacingSlider, 0);
+		briSpacing = (int)boxSliderBalance(briSpacing, briSpacingBox, briSpacingSlider, 0);
+		strokeWidth = boxSliderBalance(strokeWidth, strokeWidthBox, strokeWidthSlider, 2);
+		strokeHue = (int)boxSliderBalance(strokeHue, strokeHueBox, strokeHueSlider, 0);
+		strokeSat = (int)boxSliderBalance(strokeSat, strokeSatBox, strokeSatSlider, 0);
+		strokeBri = (int)boxSliderBalance(strokeBri, strokeBriBox, strokeBriSlider, 0);
+		subCount = (int)boxSliderBalance(subCount, subCountBox, subCountSlider, 0);
 		subDepth = (int)boxSliderBalance(subDepth, subDepthBox, subDepthSlider, 0);
-	    shadowAngle = (int)boxSliderBalance(shadowAngle, shadowAngleBox, shadowAngleSlider, 0);
-	    shadowIntensity = boxSliderBalance(shadowIntensity, shadowIntensityBox, shadowIntensitySlider, 1);
-	    loneBoxManage(perlinSeedBox);
+		shadowAngle = (int)boxSliderBalance(shadowAngle, shadowAngleBox, shadowAngleSlider, 0);
+		shadowIntensity = boxSliderBalance(shadowIntensity, shadowIntensityBox, shadowIntensitySlider, 1);
+		loneBoxManage(perlinSeedBox);
 		perlinScale = boxSliderBalance(perlinScale, perlinScaleBox, perlinScaleSlider, 3);
 		
-	    // size = round(size);
-	    // colorCount = round(colorCount);
+		// size = round(size);
+		// colorCount = round(colorCount);
 		
-	    if (lpColorCount != colorCount || lpHue != startHue || lpSat != startSat || lpBri != startBri || lpHueSpacing != hueSpacing || lpSatSpacing != satSpacing || lpBriSpacing != briSpacing || lpMode != mode || !previewGUIReset) {
-	        updateColorPreview();
-	        lpColorCount = colorCount;
-	        lpHue = startHue;
-	        lpSat = startSat;
-	        lpBri = startBri;
-	        lpHueSpacing = hueSpacing;
-	        lpSatSpacing = satSpacing;
-	        lpBriSpacing = briSpacing;
-	        lpMode = mode;
-	        previewGUIReset = true;
-	    }
+		if (lpColorCount != colorCount || lpHue != startHue || lpSat != startSat || lpBri != startBri || lpHueSpacing != hueSpacing || lpSatSpacing != satSpacing || lpBriSpacing != briSpacing || lpMode != mode || !previewGUIReset) {
+			updateColorPreview();
+			lpColorCount = colorCount;
+			lpHue = startHue;
+			lpSat = startSat;
+			lpBri = startBri;
+			lpHueSpacing = hueSpacing;
+			lpSatSpacing = satSpacing;
+			lpBriSpacing = briSpacing;
+			lpMode = mode;
+			previewGUIReset = true;
+		}
 		
-	    if (sub && !prevSub) {
-	        subCountSlider.show();
-	        subCountBox.show();
+		if (sub && !prevSub) {
+			subCountSlider.show();
+			subCountBox.show();
 			subDepthSlider.show();
 			subDepthBox.show();
-	        prevSub = true;
-	    } else if (!sub && prevSub) {
-	        subCountSlider.hide();
-	        subCountBox.hide();
+			prevSub = true;
+		} else if (!sub && prevSub) {
+			subCountSlider.hide();
+			subCountBox.hide();
 			subDepthSlider.hide();
 			subDepthBox.hide();
-	        image(raster, 0, 0);
-	        toggleGUI(true);
-	        prevSub = false;
-	    }
+			image(raster, 0, 0);
+			toggleGUI(true);
+			prevSub = false;
+		}
 		
-	    if (shape == 8 && !shadowAngleSlider.isVisible()) {
-	        shadowAngleSlider.show();
-	        shadowAngleBox.show();
-	        shadowIntensitySlider.show();
-	        shadowIntensityBox.show();
-	    } else if (shape != 8 && shadowAngleSlider.isVisible()) {
-	        shadowAngleSlider.hide();
-	        shadowAngleBox.hide();
-	        shadowIntensitySlider.hide();
-	        shadowIntensityBox.hide();
-	        image(raster, 0, 0);
-	        toggleGUI(true);
-	    }
+		if (shape == 8 && !shadowAngleSlider.isVisible()) {
+			shadowAngleSlider.show();
+			shadowAngleBox.show();
+			shadowIntensitySlider.show();
+			shadowIntensityBox.show();
+		} else if (shape != 8 && shadowAngleSlider.isVisible()) {
+			shadowAngleSlider.hide();
+			shadowAngleBox.hide();
+			shadowIntensitySlider.hide();
+			shadowIntensityBox.hide();
+			image(raster, 0, 0);
+			toggleGUI(true);
+		}
 		
 		for (int i = 0; i < colorPreviews.size(); i++) {
 			if (colorPreviews.get(i).isPressed()) {
-	            copyString((String)hex(colors.get(i), 6));
+				copyString((String)hex(colors.get(i), 6));
 			}
 		}
 	}
@@ -338,37 +338,37 @@ void draw() {
 
 void refreshSubs() {
 	if (lpShape == 0 || lpShape == 4 || lpShape == 5) { //Triangle
-	    subsTri.clear();
-	    for (int i = 0; i < subs.size(); i++) {
-	        subsTri.add(subs.get(i));
-	    }
+		subsTri.clear();
+		for (int i = 0; i < subs.size(); i++) {
+			subsTri.add(subs.get(i));
+		}
 	} else if (lpShape == 1) { //Hexagon
-	    subsHex.clear();
-	    for (int i = 0; i < subs.size(); i++) {
-	        subsHex.add(subs.get(i));
-	    }
+		subsHex.clear();
+		for (int i = 0; i < subs.size(); i++) {
+			subsHex.add(subs.get(i));
+		}
 	} else if (lpShape == 2 || lpShape == 3) { //Square
-	    subsSquare.clear();
-	    for (int i = 0; i < subs.size(); i++) {
-	        subsSquare.add(subs.get(i));
-	    }
+		subsSquare.clear();
+		for (int i = 0; i < subs.size(); i++) {
+			subsSquare.add(subs.get(i));
+		}
 	}
 	subList.clear();
 	if (shape == 0 || shape == 4 || shape == 5) { //Triangle
-	    subList.addItems(new String[] {"4 Triangles", "Vertex to Midpoint", "Center Split"});
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subList.getItem(i).put("state", subsTri.get(i));
-	    }
+		subList.addItems(new String[] {"4 Triangles", "Vertex to Midpoint", "Center Split"});
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subList.getItem(i).put("state", subsTri.get(i));
+		}
 	} else if (shape == 1) { //Hexagon
-	    subList.addItems(new String[] {"Inscribe Triangle", "3-Way Split", "4-Way Split", "6-Way Split", "Half"});
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subList.getItem(i).put("state", subsHex.get(i));
-	    }
+		subList.addItems(new String[] {"Inscribe Triangle", "3-Way Split", "4-Way Split", "6-Way Split", "Half"});
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subList.getItem(i).put("state", subsHex.get(i));
+		}
 	} else if (shape == 2 || shape == 3) { //Square
-	    subList.addItems(new String[] {"Quarters", "Diagonal", "Half", "Inscribe Diamond"});
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subList.getItem(i).put("state", subsSquare.get(i));
-	    }
+		subList.addItems(new String[] {"Quarters", "Diagonal", "Half", "Inscribe Diamond"});
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subList.getItem(i).put("state", subsSquare.get(i));
+		}
 	}
 	lpShape = shape;
 }
@@ -377,138 +377,138 @@ void drawPlane() {
 	shapes.clear();
 	imageSaveCount = loadStrings(docsPath + "ShapePlane/imageSaveCount.txt");
 	if (seedBox.getText().compareTo("") == 0) {
-	    seed = "" + int(unaffectedRandomRange(0, 999999999));
-	    while(seed.length() < 10) {
-	        seed = "0" + seed;
-	    }
+		seed = "" + int(unaffectedRandomRange(0, 999999999));
+		while(seed.length() < 10) {
+			seed = "0" + seed;
+		}
 		seedBox.setText(seed);
 	} else {
 		seed = seedBox.getText();
 	}
 	if (!prevSeeds.contains(seed)) {
-	    undoAmount = 1;
-	    prevSeeds.add(seed);
+		undoAmount = 1;
+		prevSeeds.add(seed);
 	}
 	if (prevSeeds.size() > 99) {
-	    prevSeeds.remove(0);
+		prevSeeds.remove(0);
 	}
 	randomSeed(seed.hashCode());
 	clearEmptyFiles();
 	if (!trial) {
-	    beginRecord(PDF, docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + ".pdf");
+		beginRecord(PDF, docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + ".pdf");
 	}
 	colorMode(HSB, 360, 100, 100, 100);
 	rectMode(CORNERS);
 	background(360);
 	
 	if (perlinScaleSlider.getValue() < 0) {
-	    perlinScale = random(0,.2);
+		perlinScale = random(0,.2);
 	} else {
-	    perlinScale = perlinScaleSlider.getValue();
+		perlinScale = perlinScaleSlider.getValue();
 	}
 	
 	if (strokeWidth > 0) {
-	    strokeWeight(strokeWidth);
-	    stroke(color(strokeHue, strokeSat, strokeBri));
-	    strokeCap(PROJECT);
+		strokeWeight(strokeWidth);
+		stroke(color(strokeHue, strokeSat, strokeBri));
+		strokeCap(PROJECT);
 	} else {
-	    noStroke();
+		noStroke();
 	}
 	
 	toggleGUI(false);
 	
 	if (shape == 0 || shape == 1 || shape == 8) {
-	    xCount = int(size * s3);
+		xCount = int(size * s3);
 		yCount = int(size * 4 / 3);
 	} else if (shape == 3 || shape == 5 || shape == 7) {
-	    xCount = int(size);
+		xCount = int(size);
 		yCount = int(size) - 1;
 	} else {
-	    xCount = int(size) - 1;
+		xCount = int(size) - 1;
 		yCount = int(size) - 1;
 	}
 	genColors(round(colorCount));
 	
 	for (int y = 0; y <= yCount; y++) {
-	    for (int x = 0; x <= xCount; x++) {
-	        pointData leftTop = new pointData(x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3), y * height / size - height / size / 4 * y);
-	        pointData top = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 4 * s3, y * height / size - height / size / 4 - height / size / 4 * y);
-	        pointData rightTop = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 2 * s3, y * height / size - height / size / 4 * y);
-	        pointData rightBottom = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 2 * s3, y * height / size + height / size / 2 - height / size / 4 * y);
-	        pointData bottom = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 4 * s3, y * height / size + height / size * 3 / 4 - height / size / 4 * y);
-	        pointData leftBottom = new pointData(x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3), y * height / size + height / size / 2 - height / size / 4 * y);
-	        pointData center = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 4 * s3, y * height / size + height / size / 4 - height / size / 4 * y);
-	        pointData squareTL = new pointData(x * height / size,y * height / size);
-	        pointData squareTR = new pointData((x + 1) * height / size,y * height / size);
-	        pointData squareBL = new pointData(x * height / size,(y + 1) * height / size);
-	        pointData squareBR = new pointData((x + 1) * height / size,(y + 1) * height / size);
-	        pointData squareOTL = new pointData(x * height / size - (y % 2 ==  0 ? 0 : height / size / 2),y * height / size);
-	        pointData squareOTR = new pointData((x + 1) * height / size - (y % 2 ==  0 ? 0 : height / size / 2),y * height / size);
-	        pointData squareOBL = new pointData(x * height / size - (y % 2 ==  0 ? 0 : height / size / 2),(y + 1) * height / size);
-	        pointData squareOBR = new pointData((x + 1) * height / size - (y % 2 ==  0 ? 0 : height / size / 2),(y + 1) * height / size);
+		for (int x = 0; x <= xCount; x++) {
+			pointData leftTop = new pointData(x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3), y * height / size - height / size / 4 * y);
+			pointData top = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 4 * s3, y * height / size - height / size / 4 - height / size / 4 * y);
+			pointData rightTop = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 2 * s3, y * height / size - height / size / 4 * y);
+			pointData rightBottom = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 2 * s3, y * height / size + height / size / 2 - height / size / 4 * y);
+			pointData bottom = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 4 * s3, y * height / size + height / size * 3 / 4 - height / size / 4 * y);
+			pointData leftBottom = new pointData(x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3), y * height / size + height / size / 2 - height / size / 4 * y);
+			pointData center = new pointData((x * height / size / 2 * s3 - (y % 2 ==  0 ? 0 : height / size / 4 * s3)) + height / size / 4 * s3, y * height / size + height / size / 4 - height / size / 4 * y);
+			pointData squareTL = new pointData(x * height / size,y * height / size);
+			pointData squareTR = new pointData((x + 1) * height / size,y * height / size);
+			pointData squareBL = new pointData(x * height / size,(y + 1) * height / size);
+			pointData squareBR = new pointData((x + 1) * height / size,(y + 1) * height / size);
+			pointData squareOTL = new pointData(x * height / size - (y % 2 ==  0 ? 0 : height / size / 2),y * height / size);
+			pointData squareOTR = new pointData((x + 1) * height / size - (y % 2 ==  0 ? 0 : height / size / 2),y * height / size);
+			pointData squareOBL = new pointData(x * height / size - (y % 2 ==  0 ? 0 : height / size / 2),(y + 1) * height / size);
+			pointData squareOBR = new pointData((x + 1) * height / size - (y % 2 ==  0 ? 0 : height / size / 2),(y + 1) * height / size);
 			
-	        switch(shape) {
-	            case 0 : //Equilateral Triangle
-		               shapes.add(new Shape(ShapeType.TRI, leftTop, top, center));
-		               shapes.add(new Shape(ShapeType.TRI, top, rightTop, center));
-		               shapes.add(new Shape(ShapeType.TRI, rightTop, rightBottom, center));
-		               shapes.add(new Shape(ShapeType.TRI, rightBottom, bottom, center));
-		               shapes.add(new Shape(ShapeType.TRI, bottom, leftBottom, center));
-		               shapes.add(new Shape(ShapeType.TRI, leftBottom, leftTop, center));
-		               break;
-	            case 1 : //Hexagon
-		               shapes.add(new Shape(ShapeType.HEX, leftTop, top, rightTop, rightBottom, bottom, leftBottom));
-		               break;
-	            case 2 : //Square
-		               shapes.add(new Shape(ShapeType.SQUARE, squareTL, squareBR));
-		               break;
-	            case 3 : //Square Offset
-		               shapes.add(new Shape(ShapeType.SQUARE, squareOTL, squareOBR));
-		               break;
-	            case 4 : //Right Triangle
-		               if (getRandomBoolean()) {
-			               shapes.add(new Shape(ShapeType.TRI, squareTL, squareTR, squareBR));
-			               shapes.add(new Shape(ShapeType.TRI, squareTL, squareBL, squareBR));
-			           } else {
-			               shapes.add(new Shape(ShapeType.TRI, squareTR, squareBR, squareBL));
-			               shapes.add(new Shape(ShapeType.TRI, squareTL, squareTR, squareBL));
-			           }
-		               break;
-	            case 5 : //Right Triangle Offset
-		               if (getRandomBoolean()) {
-			               shapes.add(new Shape(ShapeType.TRI, squareOTR, squareOTL, squareOBR));
-			               shapes.add(new Shape(ShapeType.TRI, squareOBL, squareOTL, squareOBR));
-			           } else {
-			               shapes.add(new Shape(ShapeType.TRI, squareOBR, squareOTR, squareOBL));
-			               shapes.add(new Shape(ShapeType.TRI, squareOTL, squareOTR, squareOBL));
-			           }
-		               break;
+			switch(shape) {
+				case 0 : //Equilateral Triangle
+					   shapes.add(new Shape(ShapeType.TRI, leftTop, top, center));
+					   shapes.add(new Shape(ShapeType.TRI, top, rightTop, center));
+					   shapes.add(new Shape(ShapeType.TRI, rightTop, rightBottom, center));
+					   shapes.add(new Shape(ShapeType.TRI, rightBottom, bottom, center));
+					   shapes.add(new Shape(ShapeType.TRI, bottom, leftBottom, center));
+					   shapes.add(new Shape(ShapeType.TRI, leftBottom, leftTop, center));
+					   break;
+				case 1 : //Hexagon
+					   shapes.add(new Shape(ShapeType.HEX, leftTop, top, rightTop, rightBottom, bottom, leftBottom));
+					   break;
+				case 2 : //Square
+					   shapes.add(new Shape(ShapeType.SQUARE, squareTL, squareBR));
+					   break;
+				case 3 : //Square Offset
+					   shapes.add(new Shape(ShapeType.SQUARE, squareOTL, squareOBR));
+					   break;
+				case 4 : //Right Triangle
+					   if (getRandomBoolean()) {
+						   shapes.add(new Shape(ShapeType.TRI, squareTL, squareTR, squareBR));
+						   shapes.add(new Shape(ShapeType.TRI, squareTL, squareBL, squareBR));
+					   } else {
+						   shapes.add(new Shape(ShapeType.TRI, squareTR, squareBR, squareBL));
+						   shapes.add(new Shape(ShapeType.TRI, squareTL, squareTR, squareBL));
+					   }
+					   break;
+				case 5 : //Right Triangle Offset
+					   if (getRandomBoolean()) {
+						   shapes.add(new Shape(ShapeType.TRI, squareOTR, squareOTL, squareOBR));
+						   shapes.add(new Shape(ShapeType.TRI, squareOBL, squareOTL, squareOBR));
+					   } else {
+						   shapes.add(new Shape(ShapeType.TRI, squareOBR, squareOTR, squareOBL));
+						   shapes.add(new Shape(ShapeType.TRI, squareOTL, squareOTR, squareOBL));
+					   }
+					   break;
 				// case 6: //Cube
 				// 	color base = rColor(center);
-	            //     // fill(color(hue(base), saturation(base), brightness(base) - hueSpacing * 2));
-	            //     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle + 120, 360f)/180f)));
-	            //     quadra(leftBottom, leftTop, center, bottom);
-	            //     shapes.add(new Shape(ShapeType.QUAD, leftBottom, leftTop, center, bottom));
-	            //     // fill(base);
-	            //     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle, 360f)/180f)));
-	            //     quadra(top, rightTop, center, leftTop);
-	            //     shapes.add(new Shape(ShapeType.QUAD, top, rightTop, center, leftTop));
-	            //     // fill(color(hue(base), saturation(base), brightness(base) - hueSpacing));
-	            //     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle + 240, 360f)/180f)));
-	            //     quadra(rightBottom, rightTop, center, bottom);
-	            //     shapes.add(new Shape(ShapeType.QUAD, rightBottom, rightTop, center, bottom));
-	            //     break;
-	        }
-	    }
+				//     // fill(color(hue(base), saturation(base), brightness(base) - hueSpacing * 2));
+				//     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle + 120, 360f)/180f)));
+				//     quadra(leftBottom, leftTop, center, bottom);
+				//     shapes.add(new Shape(ShapeType.QUAD, leftBottom, leftTop, center, bottom));
+				//     // fill(base);
+				//     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle, 360f)/180f)));
+				//     quadra(top, rightTop, center, leftTop);
+				//     shapes.add(new Shape(ShapeType.QUAD, top, rightTop, center, leftTop));
+				//     // fill(color(hue(base), saturation(base), brightness(base) - hueSpacing));
+				//     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle + 240, 360f)/180f)));
+				//     quadra(rightBottom, rightTop, center, bottom);
+				//     shapes.add(new Shape(ShapeType.QUAD, rightBottom, rightTop, center, bottom));
+				//     break;
+			}
+		}
 	}
 	
 	if (shapes.size() > 0 && sub) {
-	    subDivide();
+		subDivide();
 	}
 	
 	for (Shape s : shapes) {
-	    fill(rColor(s));
-	    drawPoly(s);
+		fill(rColor(s));
+		drawPoly(s);
 	}
 }
 
@@ -518,378 +518,378 @@ void subDivide() {
 	boolean triS, hexS, squS;
 	triS = hexS = squS = false;
 	for (boolean b : subsTri) {
-	    if (b) {
-	        triS = true;
-	    }
+		if (b) {
+			triS = true;
+		}
 	}
 	for (boolean b : subsHex) {
-	    if (b) {
-	        hexS = true;
-	    }
+		if (b) {
+			hexS = true;
+		}
 	}
 	for (boolean b : subsSquare) {
-	    if (b) {
-	        squS = true;
-	    }
+		if (b) {
+			squS = true;
+		}
 	}
 	
 	for (int i = 0; i < shapes.size(); i++) {
-	    if (shapes.get(i).depth < Integer.parseInt(subDepthBox.getText()) && ((shapes.get(i).type == ShapeType.TRI && triS) || (shapes.get(i).type == ShapeType.HEX && hexS) || (shapes.get(i).type == ShapeType.SQUARE && squS))) {
-	        shapesToSub.add(new Shape(shapes.get(i)));
-	    }
+		if (shapes.get(i).depth < Integer.parseInt(subDepthBox.getText()) && ((shapes.get(i).type == ShapeType.TRI && triS) || (shapes.get(i).type == ShapeType.HEX && hexS) || (shapes.get(i).type == ShapeType.SQUARE && squS))) {
+			shapesToSub.add(new Shape(shapes.get(i)));
+		}
 	}
 	for (int i = 0; i < subCount; i++) {
 		if (shapesToSub.size() <= 0) {
 			break;
 		}
-	    int index = int(random(0, shapesToSub.size()));
-	    Shape s = shapesToSub.get(index);
+		int index = int(random(0, shapesToSub.size()));
+		Shape s = shapesToSub.get(index);
 		
-	    refreshSubs();
-	    if (s.type == ShapeType.TRI) {
-	        ArrayList<Integer> subOptions = new ArrayList<Integer>();
-	        for (int j = 0; j < subsTri.size(); j++) {
-	            if (subsTri.get(j)) {
-		               subOptions.add(j);
-		           }
-	        }
-	        if (subOptions.size() <= 0) {
-	            continue;
-	        } else {
-	            shapesToSub.remove(index);
-	        }
-	        int subIndex = getRandomCase(subOptions.size());
-	        switch(subOptions.get(subIndex)) {
-	            case 0 : {//4 Triangles
-			           pointData oneTwo = midPoint(s.one, s.two);
-			           pointData twoThree = midPoint(s.two, s.three);
-			           pointData threeOne = midPoint(s.three, s.one);
-			           shapes.add(new Shape(ShapeType.TRI, oneTwo, twoThree, threeOne, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.one, oneTwo, threeOne, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.two, oneTwo, twoThree, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.three, threeOne, twoThree, s.depth + 1));
-			  			if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			               shapesToSub.add(new Shape(ShapeType.TRI, oneTwo, twoThree, threeOne, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.one, oneTwo, threeOne, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.two, oneTwo, twoThree, s.depth + 1));
-				 				shapesToSub.add(new Shape(ShapeType.TRI, s.three, threeOne, twoThree, s.depth + 1));
-				 			}
-			           break;}
-		           case 1 : {//Vertex-Midpoint
-			           pointData oneTwo = midPoint(s.one, s.two);
-			           pointData twoThree = midPoint(s.two, s.three);
-			           pointData threeOne = midPoint(s.three, s.one);
-			           switch(getRandomCase(3)) {
-			               case 0:
-			                   shapes.add(new Shape(ShapeType.TRI, s.one, s.two, threeOne, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.three, s.two, threeOne, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.one, s.two, threeOne, s.depth + 1));
-			       				shapesToSub.add(new Shape(ShapeType.TRI, s.three, s.two, threeOne, s.depth + 1));
-			       			}
-			                   break;
-			               case 1:
-			                   shapes.add(new Shape(ShapeType.TRI, s.two, s.three, oneTwo, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.one, s.three, oneTwo, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.two, s.three, oneTwo, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.one, s.three, oneTwo, s.depth + 1));
-			                   }
-			                   break;
-			               case 2:
-			                   shapes.add(new Shape(ShapeType.TRI, s.three, s.one, twoThree, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.two, s.one, twoThree, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.three, s.one, twoThree, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.two, s.one, twoThree, s.depth + 1));
-			                   }
-			                   break;
-			           }
-		               break;}
-	            case 2 : {//Center Split
-			           pointData oneTwo = midPoint(s.one, s.two);
-			           pointData twoThree = midPoint(s.two, s.three);
-			           pointData threeOne = midPoint(s.three, s.one);
-			           pointData cen = midPoint(new pointData[] {s.one, s.two, s.three});
-			           shapes.add(new Shape(ShapeType.TRI, s.one, s.two, cen, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.two, s.three, cen, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.three, s.one, cen, s.depth + 1));
-			  			if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.one, s.two, cen, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.two, s.three, cen, s.depth + 1));
-				 				shapesToSub.add(new Shape(ShapeType.TRI, s.three, s.one, cen, s.depth + 1));
-				 			}
-			           break;}
-		       }
-	    } else if (s.type == ShapeType.HEX) {
-	        ArrayList<Integer> subOptions = new ArrayList<Integer>();
-	        for (int j = 0; j < subsHex.size(); j++) {
-	            if (subsHex.get(j)) {
-		               subOptions.add(j);
-		           }
-	        }
-	        if (subOptions.size() <= 0) {
-	            continue;
-	        } else {
-	            shapesToSub.remove(index);
-	        }
-	        int subIndex = getRandomCase(subOptions.size());
-	        switch(subOptions.get(subIndex)) {
-	            case 0 : {//Inscribe triangle
-			           // pointData oneTwo = midPoint(s.one,s.two);
-			           // pointData twoThree = midPoint(s.two,s.three);
-			           // pointData threeFour = midPoint(s.three,s.four);
-			           // pointData fourFive = midPoint(s.four,s.five);
-			           // pointData fiveSix = midPoint(s.five,s.six);
-			           // pointData sixOne = midPoint(s.six,s.one);
-			           switch(getRandomCase(2)) {
-			               case 0:
-			                   shapes.add(new Shape(ShapeType.TRI, s.one, s.three, s.five, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.one, s.two, s.three, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.three, s.four, s.five, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.five, s.six, s.one, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.one, s.three, s.five, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.one, s.two, s.three, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.three, s.four, s.five, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.five, s.six, s.one, s.depth + 1));
-			                   }
-			                   break;
-			               case 1:
-			                   shapes.add(new Shape(ShapeType.TRI, s.two, s.four, s.six, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.two, s.three, s.four, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.four, s.five, s.six, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.six, s.one, s.two, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.two, s.four, s.six, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.two, s.three, s.four, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.four, s.five, s.six, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.six, s.one, s.two, s.depth + 1));
-			                   }
-			                   break;
-			           }
-		               break;}
-	            case 1 : {//3-Way Split
-			           pointData cen = midPoint(s.one, s.four);
-			           switch(getRandomCase(2)) {
-			               case 0:
-			                   shapes.add(new Shape(ShapeType.QUAD, s.one, s.two, s.three, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.three, s.four, s.five, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.five, s.six, s.one, cen, s.depth + 1));
-			                   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.one, s.two, s.three, cen, s.depth + 1));
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.three, s.four, s.five, cen, s.depth + 1));
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.five, s.six, s.one, cen, s.depth + 1));
-			                   // }
-			                   break;
-			               case 1:
-			                   shapes.add(new Shape(ShapeType.QUAD, s.two, s.three, s.four, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.four, s.five, s.six, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.six, s.one, s.two, cen, s.depth + 1));
-			                   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.two, s.three, s.four, cen, s.depth + 1));
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.four, s.five, s.six, cen, s.depth + 1));
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.six, s.one, s.two, cen, s.depth + 1));
-			                   // }
-			                   break;
-			           }
-		               break;}
-	            case 2 : {//4-Way Split
-			           pointData cen = midPoint(s.one, s.four);
-			           switch(getRandomCase(3)) {
-			               case 0:
-			                   shapes.add(new Shape(ShapeType.QUAD, s.one, s.two, s.three, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.four, s.five, s.six, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.three, s.four, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.six, s.one, cen, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			                       // shapesToSub.add(new Shape(ShapeType.QUAD, s.one, s.two, s.three, cen, s.depth + 1));
-			                       // shapesToSub.add(new Shape(ShapeType.QUAD, s.four, s.five, s.six, cen, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.three, s.four, cen, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.six, s.one, cen, s.depth + 1));
-			                   }
-			                   break;
-			               case 1:
-			                   shapes.add(new Shape(ShapeType.QUAD, s.two, s.three, s.four, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.five, s.six, s.one, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.four, s.five, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.one, s.two, cen, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			                       // shapesToSub.add(new Shape(ShapeType.QUAD, s.two, s.three, s.four, cen, s.depth + 1));
-			                       // shapesToSub.add(new Shape(ShapeType.QUAD, s.five, s.six, s.one, cen, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.four, s.five, cen, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.one, s.two, cen, s.depth + 1));
-			                   }
-			                   break;
-			               case 2:
-			                   shapes.add(new Shape(ShapeType.QUAD, s.three, s.four, s.five, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.six, s.one, s.two, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.five, s.six, cen, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.TRI, s.two, s.three, cen, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			                       // shapesToSub.add(new Shape(ShapeType.QUAD, s.three, s.four, s.five, cen, s.depth + 1));
-			                       // shapesToSub.add(new Shape(ShapeType.QUAD, s.six, s.one, s.two, cen, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.five, s.six, cen, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.TRI, s.two, s.three, cen, s.depth + 1));
-			                   }
-			                   break;
-			           }
-		               break;}
-	            case 3 : {//6-Way Split
-			           pointData cen = midPoint(s.one, s.four);
-			           shapes.add(new Shape(ShapeType.TRI, s.one, s.two, cen, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.two, s.three, cen, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.three, s.four, cen, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.four, s.five, cen, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.five, s.six, cen, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.six, s.one, cen, s.depth + 1));
-			           if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.one, s.two, cen, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.two, s.three, cen, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.three, s.four, cen, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.four, s.five, cen, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.five, s.six, cen, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.six, s.one, cen, s.depth + 1));
-			           }
-			           break;}
-		           case 4 : {//Half
-			           switch(getRandomCase(3)) {
-			               case 0:
-			                   shapes.add(new Shape(ShapeType.QUAD, s.one, s.two, s.three, s.four, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.four, s.five, s.six, s.one, s.depth + 1));
-			                   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.one, s.two, s.three, s.four, s.depth + 1));
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.four, s.five, s.six, s.one, s.depth + 1));
-			                   // }
-			                   break;
-			               case 1:
-			                   shapes.add(new Shape(ShapeType.QUAD, s.two, s.three, s.four, s.five, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.five, s.six, s.one, s.two, s.depth + 1));
-			                   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.two, s.three, s.four, s.five, s.depth + 1));
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.five, s.six, s.one, s.two, s.depth + 1));
-			                   // }
-			                   break;
-			               case 2:
-			                   shapes.add(new Shape(ShapeType.QUAD, s.three, s.four, s.five, s.six, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.QUAD, s.six, s.one, s.two, s.three, s.depth + 1));
-			                   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.three, s.four, s.five, s.six, s.depth + 1));
-			                   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.six, s.one, s.two, s.three, s.depth + 1));
-			                   // }
-			                   break;
-			           }
-		               break;}
-	            // case 5:{//Random Division
-	            //     ArrayList<Integer> points = new ArrayList<Integer>();
-	            //     for(int k = 0; k < 5; k++) {
-	            //         points.add(k);
-	            //     }
-	            //     int first = getRandomCase(points.size()+1);
-	            //     println("first,second");
-	            //     println(first);
-	            //     points.clear();
-	            //     for(int k = 0; k < 5; k++) {
-	            //         if (first != k && first-1 != k && first+1 != k && (first == 0? k != 5 : true) && (first == 5? k != 0 : true)) {
-	            //             points.add(k);
-	            //         }
-	            //     }
-	            //     int second = points.get(getRandomCase(points.size()));
-	            //     println(second);
-	            //     break;}
-	        }
-	    } else if (s.type == ShapeType.SQUARE) {
-	        ArrayList<Integer> subOptions = new ArrayList<Integer>();
-	        for (int j = 0; j < subsSquare.size(); j++) {
-	            if (subsSquare.get(j)) {
-		               subOptions.add(j);
-		           }
-	        }
-	        if (subOptions.size() <= 0) {
-	            continue;
-	        } else {
-	            // shapesToSub.remove(index);
-	        }
-	        int subIndex = getRandomCase(subOptions.size());
-	        switch(subOptions.get(subIndex)) {
-	            case 0 : {//Quarters
-			           pointData topMid = midPoint(s.one, new pointData(s.two.x, s.one.y));
-			           pointData leftMid = midPoint(s.one, new pointData(s.one.x, s.two.y));
-			           pointData bottomMid = midPoint(s.two, new pointData(s.one.x, s.two.y));
-			           pointData rightMid = midPoint(s.two, new pointData(s.two.x, s.one.y));
-			           pointData mid = midPoint(s.one, s.two);
-			           shapes.add(new Shape(ShapeType.SQUARE, s.one, mid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.SQUARE, leftMid, bottomMid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.SQUARE, mid, s.two, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.SQUARE, topMid, rightMid, s.depth + 1));
+		refreshSubs();
+		if (s.type == ShapeType.TRI) {
+			ArrayList<Integer> subOptions = new ArrayList<Integer>();
+			for (int j = 0; j < subsTri.size(); j++) {
+				if (subsTri.get(j)) {
+					   subOptions.add(j);
+				   }
+			}
+			if (subOptions.size() <= 0) {
+				continue;
+			} else {
+				shapesToSub.remove(index);
+			}
+			int subIndex = getRandomCase(subOptions.size());
+			switch(subOptions.get(subIndex)) {
+				case 0 : {//4 Triangles
+					pointData oneTwo = midPoint(s.points.get(0), s.points.get(1));
+					pointData twoThree = midPoint(s.points.get(1), s.points.get(2));
+					pointData threeOne = midPoint(s.points.get(2), s.points.get(0));
+					shapes.add(new Shape(ShapeType.TRI, s.depth + 1, oneTwo, twoThree, threeOne));
+					shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), oneTwo, threeOne));
+					shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), oneTwo, twoThree));
+					shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(2), threeOne, twoThree));
+					if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+						shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, oneTwo, twoThree, threeOne));
+						shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), oneTwo, threeOne));
+						shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), oneTwo, twoThree));
+						shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(2), threeOne, twoThree));
+					}
+					break;}
+				case 1 : {//Vertex-Midpoint
+					pointData oneTwo = midPoint(s.points.get(0), s.points.get(1));
+					pointData twoThree = midPoint(s.points.get(1), s.points.get(2));
+					pointData threeOne = midPoint(s.points.get(2), s.points.get(0));
+					switch(getRandomCase(3)) {
+						case 0:
+							shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(0), s.points.get(1), threeOne));
+							shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(2), s.points.get(1), threeOne));
+							if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+								shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(0), s.points.get(1), threeOne));
+								shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(2), s.points.get(1), threeOne));
+							}
+							break;
+						case 1:
+							shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(1), s.points.get(2), oneTwo));
+							shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(0), s.points.get(2), oneTwo));
+							if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+								shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(1), s.points.get(2), oneTwo));
+								shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(0), s.points.get(2), oneTwo));
+							}
+							break;
+						case 2:
+							shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(2), s.points.get(0), twoThree));
+							shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(1), s.points.get(0), twoThree));
+							if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+								shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(2), s.points.get(0), twoThree));
+								shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(1), s.points.get(0), twoThree));
+							}
+							break;
+					}
+					break;}
+				case 2 : {//Center Split
+					//pointData oneTwo = midPoint(s.points.get(0), s.points.get(1));
+					//pointData twoThree = midPoint(s.points.get(1), s.points.get(2));
+					//pointData threeOne = midPoint(s.points.get(2), s.points.get(0));
+					pointData cen = midPoint(new pointData[] {s.points.get(0), s.points.get(1), s.points.get(2)});
+					shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(0), s.points.get(1), cen));
+					shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(1), s.points.get(2), cen));
+					shapes.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(2), s.points.get(0), cen));
+					if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+						shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(0), s.points.get(1), cen));
+						shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(1), s.points.get(2), cen));
+						shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1,  s.points.get(2), s.points.get(0), cen));
+					}
+					break;}
+			   }
+		} else if (s.type == ShapeType.HEX) {
+			ArrayList<Integer> subOptions = new ArrayList<Integer>();
+			for (int j = 0; j < subsHex.size(); j++) {
+				if (subsHex.get(j)) {
+					subOptions.add(j);
+				}
+			}
+			if (subOptions.size() <= 0) {
+				continue;
+			} else {
+				shapesToSub.remove(index);
+			}
+			int subIndex = getRandomCase(subOptions.size());
+			switch(subOptions.get(subIndex)) {
+				case 0 : {//Inscribe triangle
+					   // pointData oneTwo = midPoint(s.points.get(0),s.points.get(1));
+					   // pointData twoThree = midPoint(s.points.get(1),s.points.get(2));
+					   // pointData threeFour = midPoint(s.points.get(2),s.points.get(3));
+					   // pointData fourFive = midPoint(s.points.get(3),s.points.get(4));
+					   // pointData fiveSix = midPoint(s.points.get(4),s.points.get(5));
+					   // pointData sixOne = midPoint(s.points.get(5),s.points.get(0));
+					   switch(getRandomCase(2)) {
+						   case 0:
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), s.points.get(2), s.points.get(4)));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), s.points.get(1), s.points.get(2)));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(2), s.points.get(3), s.points.get(4)));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(4), s.points.get(5), s.points.get(0)));
+							   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), s.points.get(2), s.points.get(4)));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), s.points.get(1), s.points.get(2)));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(2), s.points.get(3), s.points.get(4)));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(4), s.points.get(5), s.points.get(0)));
+							   }
+							   break;
+						   case 1:
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), s.points.get(3), s.points.get(5)));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), s.points.get(2), s.points.get(3)));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(3), s.points.get(4), s.points.get(5)));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(5), s.points.get(0), s.points.get(1)));
+							   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), s.points.get(3), s.points.get(5)));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), s.points.get(2), s.points.get(3)));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(3), s.points.get(4), s.points.get(5)));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(5), s.points.get(0), s.points.get(1)));
+							   }
+							   break;
+					   }
+					   break;}
+				case 1 : {//3-Way Split
+					   pointData cen = midPoint(s.points.get(0), s.points.get(3));
+					   switch(getRandomCase(2)) {
+						   case 0:
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(0), s.points.get(1), s.points.get(2), cen));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(2), s.points.get(3), s.points.get(4), cen));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(4), s.points.get(5), s.points.get(0), cen));
+							   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(0), s.points.get(1), s.points.get(2), cen));
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(2), s.points.get(3), s.points.get(4), cen));
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(4), s.points.get(5), s.points.get(0), cen));
+							   // }
+							   break;
+						   case 1:
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(1), s.points.get(2), s.points.get(3), cen));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(3), s.points.get(4), s.points.get(5), cen));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(5), s.points.get(0), s.points.get(1), cen));
+							   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1 s.points.get(1), s.points.get(2), s.points.get(3), cen));
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1 s.points.get(3), s.points.get(4), s.points.get(5), cen));
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1 s.points.get(5), s.points.get(0), s.points.get(1), cen));
+							   // }
+							   break;
+					   }
+					   break;}
+				case 2 : {//4-Way Split
+					   pointData cen = midPoint(s.points.get(0), s.points.get(3));
+					   switch(getRandomCase(3)) {
+						   case 0:
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(0), s.points.get(1), s.points.get(2), cen));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(3), s.points.get(4), s.points.get(5), cen));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(2), s.points.get(3), cen));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(5), s.points.get(0), cen));
+							   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+								   // shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(0), s.points.get(1), s.points.get(2), cen));
+								   // shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(3), s.points.get(4), s.points.get(5), cen));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(2), s.points.get(3), cen));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(5), s.points.get(0), cen));
+							   }
+							   break;
+						   case 1:
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(1), s.points.get(2), s.points.get(3), cen));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(4), s.points.get(5), s.points.get(0), cen));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(3), s.points.get(4), cen));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), s.points.get(1), cen));
+							   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+								   // shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(1), s.points.get(2), s.points.get(3), cen));
+								   // shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(4), s.points.get(5), s.points.get(0), cen));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(3), s.points.get(4), cen));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), s.points.get(1), cen));
+							   }
+							   break;
+						   case 2:
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(2), s.points.get(3), s.points.get(4), cen));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(5), s.points.get(0), s.points.get(1), cen));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(4), s.points.get(5), cen));
+							   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), s.points.get(2), cen));
+							   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+								   // shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(2), s.points.get(3), s.points.get(4), cen));
+								   // shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(5), s.points.get(0), s.points.get(1), cen));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(4), s.points.get(5), cen));
+								   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), s.points.get(2), cen));
+							   }
+							   break;
+					   }
+					   break;}
+				case 3 : {//6-Way Split
+					   pointData cen = midPoint(s.points.get(0), s.points.get(3));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), s.points.get(1), cen));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), s.points.get(2), cen));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(2), s.points.get(3), cen));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(3), s.points.get(4), cen));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(4), s.points.get(5), cen));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(5), s.points.get(0), cen));
+					   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), s.points.get(1), cen));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), s.points.get(2), cen));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(2), s.points.get(3), cen));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(3), s.points.get(4), cen));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(4), s.points.get(5), cen));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(5), s.points.get(0), cen));
+					   }
+					   break;}
+				   case 4 : {//Half
+					   switch(getRandomCase(3)) {
+						   case 0:
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(0), s.points.get(1), s.points.get(2), s.points.get(3)));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(3), s.points.get(4), s.points.get(5), s.points.get(0)));
+							   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(0), s.points.get(1), s.points.get(2), s.points.get(3)));
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(3), s.points.get(4), s.points.get(5), s.points.get(0)));
+							   // }
+							   break;
+						   case 1:
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(1), s.points.get(2), s.points.get(3), s.points.get(4)));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(4), s.points.get(5), s.points.get(0), s.points.get(1)));
+							   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(1), s.points.get(2), s.points.get(3), s.points.get(4)));
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(4), s.points.get(5), s.points.get(0), s.points.get(1)));
+							   // }
+							   break;
+						   case 2:
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(2), s.points.get(3), s.points.get(4), s.points.get(5)));
+							   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(5), s.points.get(0), s.points.get(1), s.points.get(2)));
+							   // if (s.depth + 1 < Integer.parseInt(subDepthBox.getText())) {
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(2), s.points.get(3), s.points.get(4), s.points.get(5)));
+							   //     shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, s.points.get(5), s.points.get(0), s.points.get(1), s.points.get(2)));
+							   // }
+							   break;
+					   }
+					   break;}
+				// case 5:{//Random Division
+				//     ArrayList<Integer> points = new ArrayList<Integer>();
+				//     for(int k = 0; k < 5; k++) {
+				//         points.add(k);
+				//     }
+				//     int first = getRandomCase(points.size()+1);
+				//     println("first,second");
+				//     println(first);
+				//     points.clear();
+				//     for(int k = 0; k < 5; k++) {
+				//         if (first != k && first-1 != k && first+1 != k && (first == 0? k != 5 : true) && (first == 5? k != 0 : true)) {
+				//             points.add(k);
+				//         }
+				//     }
+				//     int second = points.get(getRandomCase(points.size()));
+				//     println(second);
+				//     break;}
+			}
+		} else if (s.type == ShapeType.SQUARE) {
+			ArrayList<Integer> subOptions = new ArrayList<Integer>();
+			for (int j = 0; j < subsSquare.size(); j++) {
+				if (subsSquare.get(j)) {
+					   subOptions.add(j);
+				   }
+			}
+			if (subOptions.size() <= 0) {
+				continue;
+			} else {
+				// shapesToSub.remove(index);
+			}
+			int subIndex = getRandomCase(subOptions.size());
+			switch(subOptions.get(subIndex)) {
+				case 0 : {//Quarters
+					   pointData topMid = midPoint(s.points.get(0), new pointData(s.points.get(1).x, s.points.get(0).y));
+					   pointData leftMid = midPoint(s.points.get(0), new pointData(s.points.get(0).x, s.points.get(1).y));
+					   pointData bottomMid = midPoint(s.points.get(1), new pointData(s.points.get(0).x, s.points.get(1).y));
+					   pointData rightMid = midPoint(s.points.get(1), new pointData(s.points.get(1).x, s.points.get(0).y));
+					   pointData mid = midPoint(s.points.get(0), s.points.get(1));
+					   shapes.add(new Shape(ShapeType.SQUARE, s.depth + 1, s.points.get(0), mid));
+					   shapes.add(new Shape(ShapeType.SQUARE, s.depth + 1, leftMid, bottomMid));
+					   shapes.add(new Shape(ShapeType.SQUARE, s.depth + 1, mid, s.points.get(1)));
+					   shapes.add(new Shape(ShapeType.SQUARE, s.depth + 1, topMid, rightMid));
 			  			if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && squS) {
-			               shapesToSub.add(new Shape(ShapeType.SQUARE, s.one, mid, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.SQUARE, leftMid, bottomMid, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.SQUARE, mid, s.two, s.depth + 1));
-				 				shapesToSub.add(new Shape(ShapeType.SQUARE, topMid, rightMid, s.depth + 1));
+						   shapesToSub.add(new Shape(ShapeType.SQUARE, s.depth + 1, s.points.get(0), mid));
+						   shapesToSub.add(new Shape(ShapeType.SQUARE, s.depth + 1, leftMid, bottomMid));
+						   shapesToSub.add(new Shape(ShapeType.SQUARE, s.depth + 1, mid, s.points.get(1)));
+				 				shapesToSub.add(new Shape(ShapeType.SQUARE, s.depth + 1, topMid, rightMid));
 				 			}
-			           break;}
-		           case 1 : {//Diagonal
-			           pointData topRight = new pointData(s.two.x, s.one.y);
-			           pointData botLeft = new pointData(s.one.x, s.two.y);
-			           pointData mid = midPoint(s.one, s.two);
-			           shapes.add(new Shape(ShapeType.TRI, s.one, topRight, mid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, topRight, s.two, mid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, s.two, botLeft, mid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, botLeft, s.one, mid, s.depth + 1));
+					   break;}
+				   case 1 : {//Diagonal
+					   pointData topRight = new pointData(s.points.get(1).x, s.points.get(0).y);
+					   pointData botLeft = new pointData(s.points.get(0).x, s.points.get(1).y);
+					   pointData mid = midPoint(s.points.get(0), s.points.get(1));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), topRight, mid));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, topRight, s.points.get(1), mid));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), botLeft, mid));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, botLeft, s.points.get(0), mid));
 			  			if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.one, topRight, mid, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, topRight, s.two, mid, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.two, botLeft, mid, s.depth + 1));
-				 				shapesToSub.add(new Shape(ShapeType.TRI, botLeft, s.one, mid, s.depth + 1));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), topRight, mid));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, topRight, s.points.get(1), mid));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(1), botLeft, mid));
+				 				shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, botLeft, s.points.get(0), mid));
 				 			}
-			           break;}
-	            case 2 : {//Half split
-			           pointData topMid = midPoint(s.one, new pointData(s.two.x, s.one.y));
-			           pointData leftMid = midPoint(s.one, new pointData(s.one.x, s.two.y));
-			           pointData bottomMid = midPoint(s.two, new pointData(s.one.x, s.two.y));
-			           pointData rightMid = midPoint(s.two, new pointData(s.two.x, s.one.y));
-			           switch(getRandomCase(2)) {
-			               case 0:
-			                   shapes.add(new Shape(ShapeType.SQUARE, s.one, bottomMid, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.SQUARE, topMid, s.two, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && squS) {
-			                       shapesToSub.add(new Shape(ShapeType.SQUARE, s.one, bottomMid, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.SQUARE, topMid, s.two, s.depth + 1));
-			                   }
-			                   break;
-			               case 1:
-			                   shapes.add(new Shape(ShapeType.SQUARE, s.one, rightMid, s.depth + 1));
-			                   shapes.add(new Shape(ShapeType.SQUARE, leftMid, s.two, s.depth + 1));
-			                   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && squS) {
-			                       shapesToSub.add(new Shape(ShapeType.SQUARE, s.one, rightMid, s.depth + 1));
-			                       shapesToSub.add(new Shape(ShapeType.SQUARE, leftMid, s.two, s.depth + 1));
-			                   }
-			                   break;
-			           }
-		               break;}
-	            case 3 : {//Inscribe diamond
-			           pointData topMid = midPoint(s.one, new pointData(s.two.x, s.one.y));
-			           pointData leftMid = midPoint(s.one, new pointData(s.one.x, s.two.y));
-			           pointData bottomMid = midPoint(s.two, new pointData(s.one.x, s.two.y));
-			           pointData rightMid = midPoint(s.two, new pointData(s.two.x, s.one.y));
-			           pointData topRight = new pointData(s.two.x, s.one.y);
-			           pointData botLeft = new pointData(s.one.x, s.two.y);
-			           shapes.add(new Shape(ShapeType.TRI, s.one, topMid, leftMid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, topMid, topRight, rightMid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, rightMid, s.two, bottomMid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.TRI, bottomMid, botLeft, leftMid, s.depth + 1));
-			           shapes.add(new Shape(ShapeType.QUAD, topMid, rightMid, bottomMid, leftMid, s.depth + 1));
+					   break;}
+				case 2 : {//Half split
+					   pointData topMid = midPoint(s.points.get(0), new pointData(s.points.get(1).x, s.points.get(0).y));
+					   pointData leftMid = midPoint(s.points.get(0), new pointData(s.points.get(0).x, s.points.get(1).y));
+					   pointData bottomMid = midPoint(s.points.get(1), new pointData(s.points.get(0).x, s.points.get(1).y));
+					   pointData rightMid = midPoint(s.points.get(1), new pointData(s.points.get(1).x, s.points.get(0).y));
+					   switch(getRandomCase(2)) {
+						   case 0:
+							   shapes.add(new Shape(ShapeType.SQUARE, s.depth + 1, s.points.get(0), bottomMid));
+							   shapes.add(new Shape(ShapeType.SQUARE, s.depth + 1, topMid, s.points.get(1)));
+							   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && squS) {
+								   shapesToSub.add(new Shape(ShapeType.SQUARE, s.depth + 1, s.points.get(0), bottomMid));
+								   shapesToSub.add(new Shape(ShapeType.SQUARE, s.depth + 1, topMid, s.points.get(1)));
+							   }
+							   break;
+						   case 1:
+							   shapes.add(new Shape(ShapeType.SQUARE, s.depth + 1, s.points.get(0), rightMid));
+							   shapes.add(new Shape(ShapeType.SQUARE, s.depth + 1, leftMid, s.points.get(1)));
+							   if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && squS) {
+								   shapesToSub.add(new Shape(ShapeType.SQUARE, s.depth + 1, s.points.get(0), rightMid));
+								   shapesToSub.add(new Shape(ShapeType.SQUARE, s.depth + 1, leftMid, s.points.get(1)));
+							   }
+							   break;
+					   }
+					   break;}
+				case 3 : {//Inscribe diamond
+					   pointData topMid = midPoint(s.points.get(0), new pointData(s.points.get(1).x, s.points.get(0).y));
+					   pointData leftMid = midPoint(s.points.get(0), new pointData(s.points.get(0).x, s.points.get(1).y));
+					   pointData bottomMid = midPoint(s.points.get(1), new pointData(s.points.get(0).x, s.points.get(1).y));
+					   pointData rightMid = midPoint(s.points.get(1), new pointData(s.points.get(1).x, s.points.get(0).y));
+					   pointData topRight = new pointData(s.points.get(1).x, s.points.get(0).y);
+					   pointData botLeft = new pointData(s.points.get(0).x, s.points.get(1).y);
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), topMid, leftMid));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, topMid, topRight, rightMid));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, rightMid, s.points.get(1), bottomMid));
+					   shapes.add(new Shape(ShapeType.TRI, s.depth + 1, bottomMid, botLeft, leftMid));
+					   shapes.add(new Shape(ShapeType.QUAD, s.depth + 1, topMid, rightMid, bottomMid, leftMid));
 			  			if (s.depth + 1 < Integer.parseInt(subDepthBox.getText()) && triS) {
-			               shapesToSub.add(new Shape(ShapeType.TRI, s.one, topMid, leftMid, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, topMid, topRight, rightMid, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, rightMid, s.two, bottomMid, s.depth + 1));
-			               shapesToSub.add(new Shape(ShapeType.TRI, bottomMid, botLeft, leftMid, s.depth + 1));
-				 				// shapesToSub.add(new Shape(ShapeType.QUAD, topMid, rightMid, bottomMid, leftMid, s.depth + 1));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, s.points.get(0), topMid, leftMid));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, topMid, topRight, rightMid));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, rightMid, s.points.get(1), bottomMid));
+						   shapesToSub.add(new Shape(ShapeType.TRI, s.depth + 1, bottomMid, botLeft, leftMid));
+				 				// shapesToSub.add(new Shape(ShapeType.QUAD, s.depth + 1, topMid, rightMid, bottomMid, leftMid);
 				 			}
-			           break;}
-		       }
-	    }
+					   break;}
+			   }
+		}
 	}
 }
 
@@ -903,9 +903,9 @@ void genColors(int count) {
 	
 	float spacingH;
 	if (count != 0) {
-	    spacingH = 360 / count;
+		spacingH = 360 / count;
 	} else {
-	    spacingH = 360;
+		spacingH = 360;
 	}
 	
 	float iHue = hue(colors.get(0));
@@ -916,219 +916,219 @@ void genColors(int count) {
 	float briCurrent = iBri;
 	
 	switch(mode) {
-	    case 0 : //Intermediate
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + i * spacingH;
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+		case 0 : //Intermediate
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + i * spacingH;
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 1 : //Analogous
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + i * round(hueSpacing);
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 1 : //Analogous
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + i * round(hueSpacing);
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 2 : //Shades
-	        for (int i = 1; i < count; i++) {
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
+			}
+			break;
+		case 2 : //Shades
+			for (int i = 1; i < count; i++) {
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 3 : //Monochromatic
-	        for (int i = 1; i < count; i++) {
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
-	            colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 4 : //Complimentary
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + i * 180;
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 3 : //Monochromatic
+			for (int i = 1; i < count; i++) {
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 5 : //Left Complimentary
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + (i % 2 == 1 ? 150 : 0);
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 4 : //Complimentary
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + i * 180;
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 6 : //Right Complimentary
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + (i % 2 == 1 ? 210 : 0);
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 5 : //Left Complimentary
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + (i % 2 == 1 ? 150 : 0);
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 7 : //Split Complimentary
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + (i % 3 == 1 ? 150 : i % 3 == 2 ? 210 : 0);
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 6 : //Right Complimentary
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + (i % 2 == 1 ? 210 : 0);
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 8 : //Triad
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + i * 120;
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 7 : //Split Complimentary
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + (i % 3 == 1 ? 150 : i % 3 == 2 ? 210 : 0);
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 9 : //Tetrad
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + i * 90;
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 8 : //Triad
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + i * 120;
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 10 : //Pentagram
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + i * 72;
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 9 : //Tetrad
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + i * 90;
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 11 : //Compound Left
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + (i % 4 == 1 ? 150 : i % 4 == 2 ? 120 : i % 4 == 3 ? 60 : 0);
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 10 : //Pentagram
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + i * 72;
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
-	    case 12 : //Compound Right
-	        for (int i = 1; i < count; i++) {
-	            hueCurrent = iHue + (i % 4 == 1 ? 210 : i % 4 == 2 ? 240 : i % 4 == 3 ? 300 : 0);
-	            while(hueCurrent > 360) {
-		               hueCurrent -= 360;
-		           }
-	            satCurrent = iSat - i * satSpacing;
-	            while(satCurrent < 0) {
-		               satCurrent += 100;
-		           }
-	            briCurrent = iBri - i * briSpacing;
-	            while(briCurrent < 0) {
-		               briCurrent += 100;
-		           }
+			}
+			break;
+		case 11 : //Compound Left
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + (i % 4 == 1 ? 150 : i % 4 == 2 ? 120 : i % 4 == 3 ? 60 : 0);
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
 				colors.add(color(hueCurrent, satCurrent, briCurrent));
-	        }
-	        break;
+			}
+			break;
+		case 12 : //Compound Right
+			for (int i = 1; i < count; i++) {
+				hueCurrent = iHue + (i % 4 == 1 ? 210 : i % 4 == 2 ? 240 : i % 4 == 3 ? 300 : 0);
+				while(hueCurrent > 360) {
+					   hueCurrent -= 360;
+				   }
+				satCurrent = iSat - i * satSpacing;
+				while(satCurrent < 0) {
+					   satCurrent += 100;
+				   }
+				briCurrent = iBri - i * briSpacing;
+				while(briCurrent < 0) {
+					   briCurrent += 100;
+				   }
+				colors.add(color(hueCurrent, satCurrent, briCurrent));
+			}
+			break;
 	}
 }
 
@@ -1136,12 +1136,12 @@ color rColor(Shape shape) {
 	color c = colors.get(int(random(0,colors.size())));
 	switch(noiseMode) {
 		case 1 : //Color Mode
-			return colors.get(int(noise(shape.midPoint.x * perlinScale, shape.midPoint.y * perlinScale) * colors.size()));
-			case 2 : //Brightnes Tint Mode
-			return color(hue(c), saturation(c), noise(shape.midPoint.x * perlinScale, shape.midPoint.y * perlinScale) * 100);
-			case 3 : //Saturation Tint Mode
-			return color(hue(c), noise(shape.midPoint.x * perlinScale, shape.midPoint.y * perlinScale) * 100, brightness(c));
-			default:
+			return colors.get(int(noise(shape.midpoint().x * perlinScale, shape.midpoint().y * perlinScale) * colors.size()));
+		case 2 : //Brightnes Tint Mode
+			return color(hue(c), saturation(c), noise(shape.midpoint().x * perlinScale, shape.midpoint().y * perlinScale) * 100);
+		case 3 : //Saturation Tint Mode
+			return color(hue(c), noise(shape.midpoint().x * perlinScale, shape.midpoint().y * perlinScale) * 100, brightness(c));
+		default:
 			return c;
 	}
 }
@@ -1167,8 +1167,8 @@ color rColor() {
 void goBack() {
 	undoAmount++;
 	if (prevSeeds.size() - undoAmount >= 0) {
-	    seedBox.setText(prevSeeds.get(prevSeeds.size() - undoAmount));
-	    drawPlane();
+		seedBox.setText(prevSeeds.get(prevSeeds.size() - undoAmount));
+		drawPlane();
 	}
 }
 
@@ -1176,9 +1176,9 @@ void keyReleased() {
 	if (key == CODED && (keyCode == 157 || keyCode == CONTROL) && modPressed) {
 		modPressed = false;
 	} else if ((key == 'c' || keyCode == 67) && cPressed) {
-	    cPressed = false;
+		cPressed = false;
 	} else  if ((key == 'v' || keyCode == 86) && vPressed) {
-	    vPressed = false;
+		vPressed = false;
 	}
 }
 
@@ -1186,56 +1186,56 @@ void keyPressed() {
 	if (key == CODED && (keyCode == 157 || keyCode == CONTROL) && !modPressed) {
 		modPressed = true;
 	} else if ((key == 'c' || keyCode == 67) && !cPressed) {
-	    cPressed = true;
+		cPressed = true;
 	} else  if ((key == 'v' || keyCode == 86) && !vPressed) {
-	    vPressed = true;
+		vPressed = true;
 	}
 	
 	if (key == CODED) {
-	    if (keyCode == UP) {
-	        imageSaveCount = loadStrings(docsPath + "ShapePlane/imageSaveCount.txt");
-	        if (guiState) {
-	            toggleGUI(false);
-	            drawPlane();
+		if (keyCode == UP) {
+			imageSaveCount = loadStrings(docsPath + "ShapePlane/imageSaveCount.txt");
+			if (guiState) {
+				toggleGUI(false);
+				drawPlane();
 				if (!trial) {
-		               endRecord();
-		           } else {
-		               save(docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + ".jpg");
-		           }
-	            savePrefsPath(docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + "-PRESET");
-	            toggleGUI(true);
-	        } else {
-				if (!trial) {
-		               endRecord();
-		           } else {
-		               save(docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + ".jpg");
-		           }
+					   endRecord();
+				   } else {
+					   save(docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + ".jpg");
+				   }
 				savePrefsPath(docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + "-PRESET");
-	        }
+				toggleGUI(true);
+			} else {
+				if (!trial) {
+					   endRecord();
+				   } else {
+					   save(docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + ".jpg");
+				   }
+				savePrefsPath(docsPath + "ShapePlane/images/ShapePlane-" + int(imageSaveCount[0]) + "-PRESET");
+			}
 			saveStrings(docsPath + "ShapePlane/imageSaveCount.txt", new String[] {"" + (int(imageSaveCount[0]) + 1)});
-	    } else if (keyCode == LEFT) {
-	        toggleGUI(!guiState);
+		} else if (keyCode == LEFT) {
+			toggleGUI(!guiState);
 			if (!guiState) {
 				drawPlane();
 			}
-	    } else if (keyCode == RIGHT) {
-	        seedBox.setText("");
-	        if (ranPerlin) {
-	            randomizePerlinSeed();
-	        }
-	        drawPlane();
-	    } else if (keyCode == DOWN) {
-	        goBack();
-	    }
+		} else if (keyCode == RIGHT) {
+			seedBox.setText("");
+			if (ranPerlin) {
+				randomizePerlinSeed();
+			}
+			drawPlane();
+		} else if (keyCode == DOWN) {
+			goBack();
+		}
 	} else if (key == TAB && guiState) {
-	    if (currentBoxNum < 0) {
-	        boxesVis.get(0).setFocus(true);
-	    } else if (currentBoxNum >= boxesVis.size() - 1) {
-	        boxesVis.get(boxesVis.size() - 1).setFocus(false);
-	    } else {
-	        boxesVis.get(currentBoxNum).setFocus(false);
-	        boxesVis.get(currentBoxNum + 1).setFocus(true);
-	    }
+		if (currentBoxNum < 0) {
+			boxesVis.get(0).setFocus(true);
+		} else if (currentBoxNum >= boxesVis.size() - 1) {
+			boxesVis.get(boxesVis.size() - 1).setFocus(false);
+		} else {
+			boxesVis.get(currentBoxNum).setFocus(false);
+			boxesVis.get(currentBoxNum + 1).setFocus(true);
+		}
 	} else if (key == ESC) {
 		key = 0;
 		clearEmptyFiles();
@@ -1245,22 +1245,22 @@ void keyPressed() {
 
 void controlEvent(ControlEvent event) {
 	if (event.isTab()) {
-	    cp5.getGroup("allTabs").setTab(event.getTab());
-	    drawPlane();
-	    toggleGUI(true);
+		cp5.getGroup("allTabs").setTab(event.getTab());
+		drawPlane();
+		toggleGUI(true);
 	}
 }
 
 void toggleGUI(boolean state) {
 	if (state) {
-	    raster = get();
-	    fill(0, 70);
+		raster = get();
+		fill(0, 70);
 		noStroke();
-	    rect(0, 0, width, height);
-	    cp5.show();
-	    previewGUIReset = false;
+		rect(0, 0, width, height);
+		cp5.show();
+		previewGUIReset = false;
 	} else {
-	    cp5.hide();
+		cp5.hide();
 	}
 	for (Textfield t : boxes) {
 		t.setFocus(false);
@@ -1273,7 +1273,7 @@ void setListOptions(ListBox list, Integer[] indexes) {
 		list.getItem(i).put("state", false);
 	}
 	for (int in : indexes) {
-	    list.getItem(in).put("state", true);
+		list.getItem(in).put("state", true);
 	}
 }
 
@@ -1296,23 +1296,23 @@ void minMaxLock(Slider minS, Slider maxS) {
 
 void loneBoxManage(Textfield box) {
 	for (int i = 0; i < boxesVis.size(); i++) {
-	    if (boxesVis.get(i) == box) {
-	        if (box.isFocus()) {
-	            currentBoxNum = i;
-	        } else if (currentBoxNum == i) {
-	            currentBoxNum = -1;
-	        }
-	    }
+		if (boxesVis.get(i) == box) {
+			if (box.isFocus()) {
+				currentBoxNum = i;
+			} else if (currentBoxNum == i) {
+				currentBoxNum = -1;
+			}
+		}
 	}
 	if (box.isFocus()) {
-	    if (cPressed && modPressed) {
-	       box.setFocus(false);
-	       String t = (box.getText().substring(box.getText().length() - 1).toLowerCase().compareTo("c") != 0 && box.getText().substring(box.getText().length() - 1).toLowerCase().compareTo("") != 0) ? box.getText() : box.getText().substring(0, box.getText().length() - 1);
-	       copyString(t);
-	       box.setText(t);
-	    } else if (vPressed && modPressed) {
-	       box.setText(pasteString());
-	    }
+		if (cPressed && modPressed) {
+		   box.setFocus(false);
+		   String t = (box.getText().substring(box.getText().length() - 1).toLowerCase().compareTo("c") != 0 && box.getText().substring(box.getText().length() - 1).toLowerCase().compareTo("") != 0) ? box.getText() : box.getText().substring(0, box.getText().length() - 1);
+		   copyString(t);
+		   box.setText(t);
+		} else if (vPressed && modPressed) {
+		   box.setText(pasteString());
+		}
 	}
 }
 
@@ -1320,23 +1320,23 @@ float boxSliderBalance(float value, Textfield box, Slider slider, int decimals) 
 	String s = String.format("%." + decimals + "f", slider.getValue()) + "";
 	
 	for (int i = 0; i < boxesVis.size(); i++) {
-	    if (boxesVis.get(i) == box) {
-	        if (box.isFocus()) {
-	            currentBoxNum = i;
-	        } else if (currentBoxNum == i) {
-	            currentBoxNum = -1;
-	        }
-	    }
+		if (boxesVis.get(i) == box) {
+			if (box.isFocus()) {
+				currentBoxNum = i;
+			} else if (currentBoxNum == i) {
+				currentBoxNum = -1;
+			}
+		}
 	}
 	
 	if (!box.isFocus()) {
-	    box.setText(s);
+		box.setText(s);
 	} else if (box.isFocus()) {
-	    if (keyPressed && key == 10) {
-	        box.setFocus(false);
-	        box.setText(s);
-	    } else if (keyPressed && key == 'c' && modPressed) {
-		    box.setFocus(false);
+		if (keyPressed && key == 10) {
+			box.setFocus(false);
+			box.setText(s);
+		} else if (keyPressed && key == 'c' && modPressed) {
+			box.setFocus(false);
 			String t = (box.getText().substring(box.getText().length() - 1).toLowerCase().compareTo("c") != 0) ? box.getText() : box.getText().substring(0, box.getText().length() - 1);
 			copyString(t);
 			box.setText(t);
@@ -1344,8 +1344,8 @@ float boxSliderBalance(float value, Textfield box, Slider slider, int decimals) 
 			box.setText(pasteString());
 			slider.setValue(float(pasteString()));
 		} else if (keyPressed) {
-	        slider.setValue(float(box.getText()));
-	    }
+			slider.setValue(float(box.getText()));
+		}
 	}
 	return float(box.getText());
 }
@@ -1376,7 +1376,7 @@ void updatePresetList() {
 float withinLoopBounds(float initial, float max) {
 	float i = initial;
 	while(i > max) {
-	    i -= max;
+		i -= max;
 	}
 	return i;
 }
@@ -1387,26 +1387,26 @@ String stripExtension(String fileString) {
 
 void updateColorPreview() {
 	if (cp5.getTab("Color").isActive()) {
-	    for (Button b : colorPreviews) {
+		for (Button b : colorPreviews) {
 		b.remove();
 	}
-	    colorPreviews.clear();
-	    fill(0);
-	    noStroke();
-	    rect(0, height - 120, width, height);
-	    genColors(round(colorCount));
-	    float wid;
-	    if (round(colorCount) != 0) {
-	        wid = width / colorCount;
-	    } else {
-	        wid = width;
-	    }
-	    for (int i = 0; i < colors.size(); i++) {
-	        fill(colors.get(int(i)));
-	        rect(i * wid, height - 90, i * wid + wid, height);
+		colorPreviews.clear();
+		fill(0);
+		noStroke();
+		rect(0, height - 120, width, height);
+		genColors(round(colorCount));
+		float wid;
+		if (round(colorCount) != 0) {
+			wid = width / colorCount;
+		} else {
+			wid = width;
+		}
+		for (int i = 0; i < colors.size(); i++) {
+			fill(colors.get(int(i)));
+			rect(i * wid, height - 90, i * wid + wid, height);
 		Button but = cp5.addButton("b" + i).setPosition(i * wid, height - 90).setSize(int(wid),90).setCaptionLabel("").setColorActive(colors.get(i)).setColorBackground(colors.get(i)).setColorForeground(colors.get(i)).setTab("Color");
 		colorPreviews.add(but);
-	    }
+		}
 	}
 }
 
@@ -1419,45 +1419,45 @@ void copyString(String string) {
 String pasteString() {
 	String str = "";
 	try {
-	    str = (String)Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
+		str = (String)Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
 	} catch(UnsupportedFlavorException e) {
-	    println(e);
+		println(e);
 	} finally {
-	    return str;
+		return str;
 	}
 }
 
 void savePrefs() {
 	String st = presetSaveNameBox.getText();
 	if (lpShape == 0 || lpShape == 4 || lpShape == 5) { //Triangle
-	    subsTri.clear();
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subsTri.add((boolean)subList.getItem(i).get("state"));
-	    }
+		subsTri.clear();
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subsTri.add((boolean)subList.getItem(i).get("state"));
+		}
 	} else if (lpShape == 1) { //Hexagon
-	    subsHex.clear();
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subsHex.add((boolean)subList.getItem(i).get("state"));
-	    }
+		subsHex.clear();
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subsHex.add((boolean)subList.getItem(i).get("state"));
+		}
 	} else if (lpShape == 2 || lpShape == 3) { //Square
-	    subsSquare.clear();
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subsSquare.add((boolean)subList.getItem(i).get("state"));
-	    }
+		subsSquare.clear();
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subsSquare.add((boolean)subList.getItem(i).get("state"));
+		}
 	}
 	String subsTriTemp = "";
 	for (boolean b : subsTri) {
-	    subsTriTemp += (b + ",");
+		subsTriTemp += (b + ",");
 	}
 	subsTriTemp = subsTriTemp.substring(0, subsTriTemp.length() - 1);
 	String subsHexTemp = "";
 	for (boolean b : subsHex) {
-	    subsHexTemp += (b + ",");
+		subsHexTemp += (b + ",");
 	}
 	subsHexTemp = subsHexTemp.substring(0, subsHexTemp.length() - 1);
 	String subsSquareTemp = "";
 	for (boolean b : subsSquare) {
-	    subsSquareTemp += (b + ",");
+		subsSquareTemp += (b + ",");
 	}
 	subsSquareTemp = subsSquareTemp.substring(0, subsSquareTemp.length() - 1);
 	saveStrings(docsPath + "ShapePlane/presets/" + (st.compareTo("") == 0 ? "newPreset" : st) + ".txt", new String[] {"" + (int)size + "\n" + (int)colorCount + "\n" + (int)hueSpacing + "\n" + (int)mode + "\n" +
@@ -1469,34 +1469,34 @@ void savePrefs() {
 
 void savePrefsPath(String path) {
 	if (lpShape == 0 || lpShape == 4 || lpShape == 5) { //Triangle
-	    subsTri.clear();
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subsTri.add((boolean)subList.getItem(i).get("state"));
-	    }
+		subsTri.clear();
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subsTri.add((boolean)subList.getItem(i).get("state"));
+		}
 	} else if (lpShape == 1) { //Hexagon
-	    subsHex.clear();
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subsHex.add((boolean)subList.getItem(i).get("state"));
-	    }
+		subsHex.clear();
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subsHex.add((boolean)subList.getItem(i).get("state"));
+		}
 	} else if (lpShape == 2 || lpShape == 3) { //Square
-	    subsSquare.clear();
-	    for (int i = 0; i < subList.getItems().size(); i++) {
-	        subsSquare.add((boolean)subList.getItem(i).get("state"));
-	    }
+		subsSquare.clear();
+		for (int i = 0; i < subList.getItems().size(); i++) {
+			subsSquare.add((boolean)subList.getItem(i).get("state"));
+		}
 	}
 	String subsTriTemp = "";
 	for (boolean b : subsTri) {
-	    subsTriTemp += (b + ",");
+		subsTriTemp += (b + ",");
 	}
 	subsTriTemp = subsTriTemp.length() == 0 ? "" : subsTriTemp.substring(0, subsTriTemp.length() - 1);
 	String subsHexTemp = "";
 	for (boolean b : subsHex) {
-	    subsHexTemp += (b + ",");
+		subsHexTemp += (b + ",");
 	}
 	subsHexTemp = subsHexTemp.length() == 0 ? "" : subsHexTemp.substring(0, subsHexTemp.length() - 1);
 	String subsSquareTemp = "";
 	for (boolean b : subsSquare) {
-	    subsSquareTemp += (b + ",");
+		subsSquareTemp += (b + ",");
 	}
 	subsSquareTemp = subsSquareTemp.length() == 0 ? "" : subsSquareTemp.substring(0, subsSquareTemp.length() - 1);
 	saveStrings(path + ".txt", new String[] {"" + (int)size + "\n" + (int)colorCount + "\n" + (int)hueSpacing + "\n" + (int)mode + "\n" +
@@ -1508,15 +1508,15 @@ void savePrefsPath(String path) {
 
 void loadPrefs() {
 	if (!presetList.getItems().isEmpty()) {
-	    prefs = loadStrings(docsPath + "ShapePlane/presets/" + presetList.getItem(preset).entrySet().toArray()[3].toString().replace("text=", "") + ".txt");
-	    sizeSlider.setValue(int(prefs[0]));
-	    colorCountSlider.setValue(int(prefs[1]));
-	    hueSpacingSlider.setValue(int(prefs[2]));
-	    setListOptions(modeList, new Integer[] {int(prefs[3])});
-	    startHueSlider.setValue(int(prefs[4]));
-	    startSatSlider.setValue(int(prefs[5]));
-	    startBriSlider.setValue(int(prefs[6]));
-	    setListOptions(shapeList, new Integer[] {int(prefs[7])});
+		prefs = loadStrings(docsPath + "ShapePlane/presets/" + presetList.getItem(preset).entrySet().toArray()[3].toString().replace("text=", "") + ".txt");
+		sizeSlider.setValue(int(prefs[0]));
+		colorCountSlider.setValue(int(prefs[1]));
+		hueSpacingSlider.setValue(int(prefs[2]));
+		setListOptions(modeList, new Integer[] {int(prefs[3])});
+		startHueSlider.setValue(int(prefs[4]));
+		startSatSlider.setValue(int(prefs[5]));
+		startBriSlider.setValue(int(prefs[6]));
+		setListOptions(shapeList, new Integer[] {int(prefs[7])});
 		strokeWidthSlider.setValue(float(prefs[8]));
 		strokeHueSlider.setValue(int(prefs[9]));
 		strokeSatSlider.setValue(int(prefs[10]));
@@ -1524,38 +1524,38 @@ void loadPrefs() {
 		subToggle.setValue(boolean(prefs[12]));
 		subCountSlider.setValue(int(prefs[13]));
 		subDepthSlider.setValue(int(prefs[14]));
-	    setListOptions(noiseList, new Integer[] {int(prefs[15])});
+		setListOptions(noiseList, new Integer[] {int(prefs[15])});
 		perlinSeedBox.setText(prefs[16]);
 		perlinScaleSlider.setValue(float(prefs[17]));
 		perlinRandomizeToggle.setValue(boolean(prefs[18]));
-	    shadowAngleSlider.setValue(int(prefs[19]));
-	    shadowIntensitySlider.setValue(float(prefs[20]));
-	    satSpacingSlider.setValue(int(prefs[21]));
-	    briSpacingSlider.setValue(int(prefs[22]));
-	    String[] subsTriTemp = prefs[23].split(",");
-	    subsTri.clear();
-	    for (String str : subsTriTemp) {
-	        subsTri.add(boolean(str));
-	    }
-	    String[] subsHexTemp = prefs[24].split(",");
-	    subsHex.clear();
-	    for (String str : subsHexTemp) {
-	        subsHex.add(boolean(str));
-	    }
-	    String[] subsSquareTemp = prefs[25].split(",");
-	    subsSquare.clear();
-	    for (String str : subsSquareTemp) {
-	        subsSquare.add(boolean(str));
-	    }
-	    refreshSubs();
-	    seedBox.setText(prefs[26]);
+		shadowAngleSlider.setValue(int(prefs[19]));
+		shadowIntensitySlider.setValue(float(prefs[20]));
+		satSpacingSlider.setValue(int(prefs[21]));
+		briSpacingSlider.setValue(int(prefs[22]));
+		String[] subsTriTemp = prefs[23].split(",");
+		subsTri.clear();
+		for (String str : subsTriTemp) {
+			subsTri.add(boolean(str));
+		}
+		String[] subsHexTemp = prefs[24].split(",");
+		subsHex.clear();
+		for (String str : subsHexTemp) {
+			subsHex.add(boolean(str));
+		}
+		String[] subsSquareTemp = prefs[25].split(",");
+		subsSquare.clear();
+		for (String str : subsSquareTemp) {
+			subsSquare.add(boolean(str));
+		}
+		refreshSubs();
+		seedBox.setText(prefs[26]);
 	}
 }
 
 void delPrefs() {
 	File file = new File(docsPath + "ShapePlane/presets/" + presetList.getItem(preset).entrySet().toArray()[3].toString().replace("text=", "") + ".txt");
 	if (file.exists()) {
-	    file.delete();
+		file.delete();
 	}
 	updatePresetList();
 }
@@ -1587,17 +1587,17 @@ void loadDefault() {
 	String[] subsTriTemp = defaultPrefs[23].split(",");
 	subsTri.clear();
 	for (String str : subsTriTemp) {
-	    subsTri.add(boolean(str));
+		subsTri.add(boolean(str));
 	}
 	String[] subsHexTemp = defaultPrefs[24].split(",");
 	subsHex.clear();
 	for (String str : subsHexTemp) {
-	    subsHex.add(boolean(str));
+		subsHex.add(boolean(str));
 	}
 	String[] subsSquareTemp = defaultPrefs[25].split(",");
 	subsSquare.clear();
 	for (String str : subsSquareTemp) {
-	    subsSquare.add(boolean(str));
+		subsSquare.add(boolean(str));
 	}
 	refreshSubs();
 }
@@ -1632,69 +1632,16 @@ float unaffectedRandomRange(float min, float max) {
 	return(float)(Math.random() * range + min);
 }
 
-void hexagon(pointData a, pointData b, pointData c, pointData d, pointData e, pointData f) {
-	beginShape();
-	vertex(a.x, a.y);
-	vertex(b.x, b.y);
-	vertex(c.x, c.y);
-	vertex(d.x, d.y);
-	vertex(e.x, e.y);
-	vertex(f.x, f.y);
-	endShape(CLOSE);
-}
-
-void tri(pointData a, pointData b, pointData c) {
-	beginShape();
-	vertex(a.x, a.y);
-	vertex(b.x, b.y);
-	vertex(c.x, c.y);
-	endShape(CLOSE);
-}
-
-void rectangle(pointData a, pointData b) {
-	beginShape();
-	vertex(a.x, a.y);
-	vertex(b.x, a.y);
-	vertex(b.x, b.y);
-	vertex(a.x, b.y);
-	endShape(CLOSE);
-}
-
-void quadra(pointData a, pointData b, pointData c, pointData d) {
-	beginShape();
-	vertex(a.x, a.y);
-	vertex(b.x, b.y);
-	vertex(c.x, c.y);
-	vertex(d.x, d.y);
-	endShape(CLOSE);
-}
-
 void drawPoly(Shape s) {
 	beginShape();
-	if (s.type == ShapeType.SQUARE) {
-	    vertex(s.one.x,s.one.y);
-	    vertex(s.two.x,s.one.y);
-	    vertex(s.two.x,s.two.y);
-	    vertex(s.one.x,s.two.y);
+	if (s.points.size() == 2) { //Assume 2 points => square
+		vertex(s.points.get(0).x,s.points.get(0).y);
+		vertex(s.points.get(1).x,s.points.get(0).y);
+		vertex(s.points.get(1).x,s.points.get(1).y);
+		vertex(s.points.get(0).x,s.points.get(1).y);
 	} else {
-	    if (s.one != null) {
-	        vertex(s.one.x,s.one.y);
-	    }
-	    if (s.two != null) {
-	        vertex(s.two.x,s.two.y);
-	    }
-	    if (s.three != null) {
-	        vertex(s.three.x,s.three.y);
-	    }
-	    if (s.four != null) {
-	        vertex(s.four.x,s.four.y);
-	    }
-	    if (s.five != null) {
-	        vertex(s.five.x,s.five.y);
-	    }
-	    if (s.six != null) {
-	        vertex(s.six.x,s.six.y);
-	    }
+		for (pointData p : s.points)
+			vertex(p.x, p.y);
 	}
 	endShape(CLOSE);
 }
@@ -1707,8 +1654,8 @@ pointData midPoint(pointData[] points) {
 	float midX, midY;
 	midX = midY = 0;
 	for (pointData p : points) {
-	    midX += p.x;
-	    midY += p.y;
+		midX += p.x;
+		midY += p.y;
 	}
 	return new pointData(midX / points.length, midY / points.length);
 }
@@ -1724,104 +1671,37 @@ public class pointData {
 
 public class Shape {
 	public ShapeType type;
-	public pointData one, two, three, four, five, six, midPoint;
 	public int depth;
-	
+	// public pointData one, two, three, four, five, six, midPoint;
+	public ArrayList<pointData> points;
+
 	public Shape(Shape s) {
-	    type = s.type;
-	    one = s.one;
-	    two = s.two;
-	    three = s.three;
-	    four = s.four;
-	    five = s.five;
-	    six = s.six;
-	    midPoint = s.midPoint;
-	    depth = s.depth;
+		this.type = s.type;
+		this.depth = s.depth;
+		this.points = new ArrayList<pointData>();
+		this.points.addAll(s.points);
 	}
-	
-	public Shape(ShapeType t, pointData a, pointData b, int de) {
-	    one = two = three = four = five = six = midPoint = null;
-	    type = t;
-	    one = a;
-	    two = b;
-	    midPoint = midPoint(a,b);
-		depth = de;
+
+	public Shape(ShapeType type, pointData... points) {
+		this.type = type;
+		this.depth = 0;
+		this.points = new ArrayList<pointData>();
+		for (pointData p : points) {
+			this.points.add(p); 
+		}
 	}
-	
-	public Shape(ShapeType t, pointData a, pointData b) {
-	    one = two = three = four = five = six = midPoint = null;
-	    type = t;
-	    one = a;
-	    two = b;
-	    midPoint = midPoint(a,b);
-		depth = 0;
+
+	public Shape(ShapeType type, int depth, pointData... points) {
+		this.type = type;
+		this.depth = depth;
+		this.points = new ArrayList<pointData>();
+		for (pointData p : points) {
+			this.points.add(p); 
+		}
 	}
-	
-	public Shape(ShapeType t, pointData a, pointData b, pointData c, int de) {
-	    one = two = three = four = five = six = midPoint = null;
-	    type = t;
-	    one = a;
-	    two = b;
-	    three = c;
-	    midPoint = midPoint(new pointData[] {a,b,c});
-		depth = de;
-	}
-	
-	public Shape(ShapeType t, pointData a, pointData b, pointData c) {
-	    one = two = three = four = five = six = midPoint = null;
-	    type = t;
-	    one = a;
-	    two = b;
-	    three = c;
-	    midPoint = midPoint(new pointData[] {a,b,c});
-		depth = 0;
-	}
-	
-	public Shape(ShapeType t, pointData a, pointData b, pointData c, pointData d, int de) {
-	    one = two = three = four = five = six = midPoint = null;
-	    type = t;
-	    one = a;
-	    two = b;
-	    three = c;
-		four = d;
-	    midPoint = midPoint(new pointData[] {a,b,c,d});
-		depth = de;
-	}
-	
-	public Shape(ShapeType t, pointData a, pointData b, pointData c, pointData d) {
-	    one = two = three = four = five = six = midPoint = null;
-	    type = t;
-	    one = a;
-	    two = b;
-	    three = c;
-		four = d;
-	    midPoint = midPoint(new pointData[] {a,b,c,d});
-		depth = 0;
-	}
-	
-	public Shape(ShapeType t, pointData a, pointData b, pointData c, pointData d, pointData e, pointData f, int de) {
-	    one = two = three = four = five = six = midPoint = null;
-	    type = t;
-	    one = a;
-	    two = b;
-	    three = c;
-	    four = d;
-	    five = e;
-	    six = f;
-	    midPoint = midPoint(a,d);
-		depth = de;
-	}
-	
-	public Shape(ShapeType t, pointData a, pointData b, pointData c, pointData d, pointData e, pointData f) {
-	    one = two = three = four = five = six = midPoint = null;
-	    type = t;
-	    one = a;
-	    two = b;
-	    three = c;
-	    four = d;
-	    five = e;
-	    six = f;
-	    midPoint = midPoint(a,d);
-		depth = 0;
+
+	public pointData midpoint() {
+		pointData[] arr = (pointData[])this.points.toArray();
+		return midPoint(arr);
 	}
 }
