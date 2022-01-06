@@ -1420,11 +1420,10 @@ String pasteString() {
 	String str = "";
 	try {
 		str = (String)Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
-	} catch(UnsupportedFlavorException e) {
+	} catch(Exception e) {
 		println(e);
-	} finally {
-		return str;
 	}
+	return str;
 }
 
 void savePrefs() {
