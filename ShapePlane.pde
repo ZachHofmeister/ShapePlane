@@ -449,55 +449,40 @@ void drawPlane() {
 			
 			switch(shape) {
 				case 0 : //Equilateral Triangle
-					   shapes.add(new Shape(ShapeType.TRI, leftTop, top, center));
-					   shapes.add(new Shape(ShapeType.TRI, top, rightTop, center));
-					   shapes.add(new Shape(ShapeType.TRI, rightTop, rightBottom, center));
-					   shapes.add(new Shape(ShapeType.TRI, rightBottom, bottom, center));
-					   shapes.add(new Shape(ShapeType.TRI, bottom, leftBottom, center));
-					   shapes.add(new Shape(ShapeType.TRI, leftBottom, leftTop, center));
-					   break;
+					shapes.add(new Shape(ShapeType.TRI, leftTop, top, center));
+					shapes.add(new Shape(ShapeType.TRI, top, rightTop, center));
+					shapes.add(new Shape(ShapeType.TRI, rightTop, rightBottom, center));
+					shapes.add(new Shape(ShapeType.TRI, rightBottom, bottom, center));
+					shapes.add(new Shape(ShapeType.TRI, bottom, leftBottom, center));
+					shapes.add(new Shape(ShapeType.TRI, leftBottom, leftTop, center));
+					break;
 				case 1 : //Hexagon
-					   shapes.add(new Shape(ShapeType.HEX, leftTop, top, rightTop, rightBottom, bottom, leftBottom));
-					   break;
+					shapes.add(new Shape(ShapeType.HEX, leftTop, top, rightTop, rightBottom, bottom, leftBottom));
+					break;
 				case 2 : //Square
-					   shapes.add(new Shape(ShapeType.SQUARE, squareTL, squareBR));
-					   break;
+					shapes.add(new Shape(ShapeType.SQUARE, squareTL, squareBR));
+					break;
 				case 3 : //Square Offset
-					   shapes.add(new Shape(ShapeType.SQUARE, squareOTL, squareOBR));
-					   break;
+					shapes.add(new Shape(ShapeType.SQUARE, squareOTL, squareOBR));
+					break;
 				case 4 : //Right Triangle
-					   if (getRandomBoolean()) {
-						   shapes.add(new Shape(ShapeType.TRI, squareTL, squareTR, squareBR));
-						   shapes.add(new Shape(ShapeType.TRI, squareTL, squareBL, squareBR));
-					   } else {
-						   shapes.add(new Shape(ShapeType.TRI, squareTR, squareBR, squareBL));
-						   shapes.add(new Shape(ShapeType.TRI, squareTL, squareTR, squareBL));
-					   }
-					   break;
+					if (getRandomBoolean()) {
+						shapes.add(new Shape(ShapeType.TRI, squareTL, squareTR, squareBR));
+						shapes.add(new Shape(ShapeType.TRI, squareTL, squareBL, squareBR));
+					} else {
+						shapes.add(new Shape(ShapeType.TRI, squareTR, squareBR, squareBL));
+						shapes.add(new Shape(ShapeType.TRI, squareTL, squareTR, squareBL));
+					}
+					break;
 				case 5 : //Right Triangle Offset
-					   if (getRandomBoolean()) {
-						   shapes.add(new Shape(ShapeType.TRI, squareOTR, squareOTL, squareOBR));
-						   shapes.add(new Shape(ShapeType.TRI, squareOBL, squareOTL, squareOBR));
-					   } else {
-						   shapes.add(new Shape(ShapeType.TRI, squareOBR, squareOTR, squareOBL));
-						   shapes.add(new Shape(ShapeType.TRI, squareOTL, squareOTR, squareOBL));
-					   }
-					   break;
-				// case 6: //Cube
-				// 	color base = rColor(center);
-				//     // fill(color(hue(base), saturation(base), brightness(base) - hueSpacing * 2));
-				//     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle + 120, 360f)/180f)));
-				//     quadra(leftBottom, leftTop, center, bottom);
-				//     shapes.add(new Shape(ShapeType.QUAD, leftBottom, leftTop, center, bottom));
-				//     // fill(base);
-				//     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle, 360f)/180f)));
-				//     quadra(top, rightTop, center, leftTop);
-				//     shapes.add(new Shape(ShapeType.QUAD, top, rightTop, center, leftTop));
-				//     // fill(color(hue(base), saturation(base), brightness(base) - hueSpacing));
-				//     fill(color(hue(base), saturation(base), brightness(base) - (shadowIntensity * withinLoopBounds(shadowAngle + 240, 360f)/180f)));
-				//     quadra(rightBottom, rightTop, center, bottom);
-				//     shapes.add(new Shape(ShapeType.QUAD, rightBottom, rightTop, center, bottom));
-				//     break;
+					if (getRandomBoolean()) {
+						shapes.add(new Shape(ShapeType.TRI, squareOTR, squareOTL, squareOBR));
+						shapes.add(new Shape(ShapeType.TRI, squareOBL, squareOTL, squareOBR));
+					} else {
+						shapes.add(new Shape(ShapeType.TRI, squareOBR, squareOTR, squareOBL));
+						shapes.add(new Shape(ShapeType.TRI, squareOTL, squareOTR, squareOBL));
+					}
+					break;
 			}
 		}
 	}
