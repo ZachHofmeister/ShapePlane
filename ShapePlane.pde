@@ -886,13 +886,6 @@ void genColors(int count) {
 	startBri = round(startBri);
 	colors.add(color(startHue >= 0 ? startHue : random(0,360), startSat >= 0 ? startSat : random(0, 100), startBri >= 0 ? startBri : random(0,100)));
 	
-	float spacingH;
-	if (count != 0) {
-		spacingH = 360 / count;
-	} else {
-		spacingH = 360;
-	}
-	
 	float iHue = hue(colors.get(0));
 	float hueCurrent = iHue;
 	float iSat = saturation(colors.get(0));
@@ -903,6 +896,12 @@ void genColors(int count) {
 	switch(mode) {
 		case 0 : //Intermediate
 			for (int i = 1; i < count; i++) {
+				float spacingH;
+				if (count != 0) {
+					spacingH = 360 / count;
+				} else {
+					spacingH = 360;
+				}
 				hueCurrent = iHue + i * spacingH;
 				while(hueCurrent > 360) {
 					   hueCurrent -= 360;
