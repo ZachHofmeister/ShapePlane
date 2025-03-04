@@ -3,7 +3,7 @@ A generative art application written in Java using the Processing library. Gener
 
 # Running the program
 After downloading the sourcecode, you will need to set up Processing to run ShapePlane.
-* Download [Processing 3](https://processing.org/) 
+* Download [Processing](https://processing.org/) 
 * In Processing you need to install processing-java which can be found in the Tools tab.
 * Install the controlP5 library from `Sketch > Import Library > Add Library` (last known working version 2.2.6)
 
